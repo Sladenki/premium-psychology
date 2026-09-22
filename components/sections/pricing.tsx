@@ -6,6 +6,7 @@ import { pricing, type Plan, type PricingMode } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
 import { cn } from "@/lib/cn";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { FadeIn, RevealLines } from "@/components/ui/reveal";
 
 const gridVariants = {
@@ -44,37 +45,56 @@ function PlanCard({ plan }: { plan: Plan }) {
     <motion.div variants={cardVariants(Boolean(plan.recommended))} className="h-full">
       <article
         className={cn(
-          "relative flex h-full flex-col bg-cream-100 p-8 sm:p-10",
+          "relative flex h-full flex-col rounded-[1.75rem] p-8 sm:p-9",
           plan.recommended
-            ? "border border-wine-700 lg:-translate-y-4"
-            : "border border-ink-900/10",
+            ? "bg-wine-800 text-cream-50 shadow-[0_24px_50px_-28px_rgba(42,10,18,0.65)] lg:-translate-y-3"
+            : "border border-wine-700/12 bg-cream-50",
         )}
       >
-        {plan.recommended ? (
-          <span className="absolute inset-x-8 top-0 h-px bg-gold-400" aria-hidden />
-        ) : null}
-        <div className="mb-6 h-4">
-          {plan.recommended ? (
-            <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-gold-400">
-              Рекомендуем
-            </p>
-          ) : null}
-        </div>
-        <h3 className="font-serif text-[2rem] leading-tight text-ink-900 lg:min-h-[5rem]">{plan.name}</h3>
-        <p className="mt-6 font-serif text-[2.75rem] leading-none text-gold-400 sm:text-5xl">
+        <p
+          aria-hidden={plan.recommended ? undefined : true}
+          className={cn(
+            "mb-8 h-4 text-[12px] font-medium uppercase tracking-[0.08em]",
+            plan.recommended ? "text-gold-400" : "text-transparent",
+          )}
+        >
+          {plan.recommended ? "Рекомендуем" : "·"}
+        </p>
+        <h3
+          className={cn(
+            "font-serif text-[2rem] leading-tight lg:min-h-[5rem]",
+            plan.recommended ? "text-cream-50" : "text-ink-900",
+          )}
+        >
+          {plan.name}
+        </h3>
+        <p className="mt-5 font-serif text-[2.5rem] leading-none text-gold-400 sm:text-[2.75rem]">
           {plan.price}
         </p>
-        <p className="mt-6 text-[1.0625rem] leading-[1.7] text-ink-500">{plan.description}</p>
-        <ul className="mt-8 space-y-3">
+        <p
+          className={cn(
+            "mt-5 text-[1.02rem] leading-[1.65]",
+            plan.recommended ? "text-cream-100/75" : "text-ink-500",
+          )}
+        >
+          {plan.description}
+        </p>
+        <ul className={cn("mt-8 space-y-3 border-t pt-6", plan.recommended ? "border-cream-50/15" : "border-wine-700/10")}>
           {plan.features.map((feature) => (
-            <li key={feature} className="flex gap-3 text-[15px] leading-relaxed text-ink-900">
+            <li
+              key={feature}
+              className={cn(
+                "flex gap-3 text-[15px] leading-relaxed",
+                plan.recommended ? "text-cream-50" : "text-ink-900",
+              )}
+            >
               <Check />
               <span>{feature}</span>
             </li>
           ))}
         </ul>
         <div className="mt-auto pt-10">
-          <MagneticButton href="#contact" variant={plan.recommended ? "solid" : "line"}>
+          <MagneticButton href="#contact" variant={plan.recommended ? "gold" : "line"}>
             {pricing.cta}
           </MagneticButton>
         </div>
@@ -90,8 +110,9 @@ export function Pricing() {
   const plans = pricing.plans[mode];
 
   return (
-    <section id="formats" className="bg-cream-50 py-24 sm:py-32 lg:py-40">
-      <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+    <section id="formats" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
+      <Atmosphere variant="formats" />
+      <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-wine-700">
           {pricing.label}
         </p>

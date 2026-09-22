@@ -1,10 +1,16 @@
 "use client";
 
 import { animate, useInView, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import portraitSeated from "../../photos/ph1.jpg";
+import portraitQuiet from "../../photos/ph2.jpg";
 import { about } from "@/lib/content";
+import { cn } from "@/lib/cn";
 import { EXPO } from "@/lib/easing";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { FadeIn, RevealLines } from "@/components/ui/reveal";
+import type { StaticImageData } from "next/image";
 
 function YearCounter() {
   const ref = useRef<HTMLSpanElement>(null);
@@ -31,12 +37,52 @@ function YearCounter() {
   );
 }
 
+function Portrait({
+  src,
+  priority = false,
+  sizes,
+  objectPosition,
+  className,
+  frameClassName,
+}: {
+  src: StaticImageData;
+  priority?: boolean;
+  sizes: string;
+  objectPosition: string;
+  className?: string;
+  frameClassName?: string;
+}) {
+  return (
+    <figure className={cn("relative", className)}>
+      <span aria-hidden className="absolute top-0 left-0 z-10 h-8 w-8 border-t-2 border-l-2 border-gold-400" />
+      <span aria-hidden className="absolute right-0 bottom-0 z-10 h-8 w-8 border-r-2 border-b-2 border-gold-400" />
+      <div className={cn("relative h-full bg-wine-950", frameClassName)}>
+        <div className="absolute inset-2.5 overflow-hidden sm:inset-3">
+          <Image
+            src={src}
+            alt="Полина Олитто"
+            fill
+            priority={priority}
+            sizes={sizes}
+            className="object-cover"
+            style={{ objectPosition }}
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(250,246,240,0.28)]"
+          />
+        </div>
+      </div>
+    </figure>
+  );
+}
+
 function LogoMarquee() {
   const sequence = Array.from({ length: 4 }, () => about.logos).flat();
 
   return (
     <div
-      className="marquee mt-16 w-full overflow-hidden border-y border-wine-700/15 py-7 sm:mt-20 sm:py-8"
+      className="marquee relative z-10 mt-16 w-full overflow-hidden border-y border-wine-700/15 py-7 sm:mt-20 sm:py-8"
       aria-label="Организации, в которых сложился опыт"
     >
       <div className="marquee-track flex w-max">
@@ -59,106 +105,103 @@ function LogoMarquee() {
 
 export function About() {
   return (
-    <section id="practice" className="bg-cream-50 py-24 sm:py-32 lg:py-40">
-      <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-wine-700">
-          {about.label}
-        </p>
-        <span className="mt-5 block h-px w-10 bg-gold-400" />
-        <RevealLines
-          lines={about.title}
-          className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
-        />
-        <FadeIn className="mt-8 max-w-2xl" delay={0.1}>
-          <p className="font-serif text-[2rem] leading-[1.25] text-wine-800 italic">
-            {about.lede}
-          </p>
-        </FadeIn>
-
-        <FadeIn className="mt-14 sm:mt-16" delay={0.05}>
-          <ul className="max-w-3xl space-y-4 border-l border-gold-400/70 pl-6 sm:pl-8">
-            {about.quotes.map((quote) => (
-              <li
-                key={quote}
-                className="font-serif text-[2rem] leading-snug text-ink-900 italic sm:text-[2.25rem]"
-              >
-                «{quote}»
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
-
-        <div className="mt-20 sm:mt-24">
-          <FadeIn>
-            <h3 className="font-serif text-[2rem] leading-tight text-ink-900">
-              {about.behindLabel}
-            </h3>
-          </FadeIn>
-          <ul className="mt-8 grid gap-x-12 sm:grid-cols-2">
-            {about.behind.map((item, index) => (
-              <FadeIn
-                as="li"
-                key={item}
-                delay={index * 0.04}
-                className="flex gap-4 border-t border-wine-700/15 py-4 text-[1.0625rem] leading-relaxed text-ink-900"
-              >
-                <span className="mt-[0.7em] h-px w-4 shrink-0 bg-gold-400" />
-                <span>{item}</span>
-              </FadeIn>
-            ))}
-          </ul>
+    <section id="practice" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
+      <Atmosphere variant="practice" />
+      <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+        <div className="grid items-stretch gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <div>
+            <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-wine-700">
+              {about.label}
+            </p>
+            <span className="mt-5 block h-px w-10 bg-gold-400" />
+            <RevealLines
+              lines={about.title}
+              className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
+            />
+            <FadeIn className="mt-8 max-w-xl" delay={0.1}>
+              <p className="font-serif text-[1.75rem] leading-[1.3] text-wine-800 italic sm:text-[2rem]">
+                {about.lede}
+              </p>
+            </FadeIn>
+            <FadeIn className="mt-10" delay={0.05}>
+              <ul className="max-w-xl space-y-3 border-l border-gold-400/70 pl-6">
+                {about.quotes.map((quote) => (
+                  <li key={quote} className="font-serif text-[1.65rem] leading-snug text-ink-900 italic sm:text-[1.85rem]">
+                    «{quote}»
+                  </li>
+                ))}
+              </ul>
+            </FadeIn>
+          </div>
+          <Portrait
+            src={portraitSeated}
+            priority
+            sizes="(min-width: 1024px) 420px, 100vw"
+            objectPosition="center 22%"
+            className="h-full min-h-[28rem]"
+            frameClassName="min-h-[28rem]"
+          />
         </div>
 
-        <div className="mt-20 flex flex-col gap-6 border-t border-wine-700/15 pt-12 sm:mt-24 md:flex-row md:items-end md:justify-between">
-          <p
-            className="font-serif text-[clamp(5rem,14vw,9rem)] leading-none text-gold-400"
-            aria-label={`${about.years}+ ${about.yearsLabel}`}
-          >
-            <YearCounter />
-            <span aria-hidden>+</span>
-          </p>
-          <p className="max-w-sm text-lg leading-relaxed text-ink-500 md:pb-4">
-            {about.yearsLabel}
-          </p>
+        <div className="mt-16 rounded-[1.75rem] bg-cream-100 px-6 py-8 sm:mt-20 sm:px-10 sm:py-10">
+          <div className="grid gap-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
+            <h3 className="font-serif text-[2rem] leading-tight text-ink-900">{about.behindLabel}</h3>
+            <ul className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
+              {about.behind.map((item, index) => (
+                <li key={item} className="flex gap-4">
+                  <span className="font-serif text-[1.35rem] leading-none text-gold-400 lining-nums">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[1.05rem] leading-snug text-ink-900">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-16 grid items-center gap-10 sm:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+          <div>
+            <p
+              className="font-serif text-[clamp(5.5rem,12vw,8rem)] leading-[0.82] text-gold-400"
+              aria-label={`${about.years}+ ${about.yearsLabel}`}
+            >
+              <YearCounter />
+              <span aria-hidden>+</span>
+            </p>
+            <p className="mt-6 max-w-md font-serif text-[1.75rem] leading-snug text-ink-900 sm:text-[2rem]">
+              {about.yearsLabel}
+            </p>
+          </div>
+          <Portrait
+            src={portraitQuiet}
+            sizes="(min-width: 1024px) 380px, 80vw"
+            objectPosition="center 18%"
+            className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none lg:justify-self-end"
+            frameClassName="aspect-[4/5]"
+          />
         </div>
       </div>
 
       <LogoMarquee />
 
-      <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <FadeIn className="mt-16 max-w-3xl sm:mt-20">
-          <p className="text-[1.0625rem] leading-[1.75] text-ink-900">{about.partners}</p>
+      <div className="relative z-10 mt-16 border-y border-wine-700/10 bg-cream-100/80 py-14 sm:mt-20 sm:py-16">
+        <FadeIn className="mx-auto max-w-3xl px-5 text-center sm:px-8">
+          <p className="font-serif text-[1.85rem] leading-snug text-ink-900 italic sm:text-[2.35rem]">
+            {about.partnersLead}
+          </p>
+          <ul className="mt-8 flex flex-wrap items-center justify-center">
+            {about.partnersRoles.map((role, index) => (
+              <li key={role} className="flex items-center font-serif text-[1.15rem] text-wine-800 sm:text-[1.3rem]">
+                {index > 0 ? (
+                  <span className="px-2.5 text-gold-400" aria-hidden>
+                    ·
+                  </span>
+                ) : null}
+                {role}
+              </li>
+            ))}
+          </ul>
         </FadeIn>
-        <ul className="mt-8 flex flex-wrap gap-2">
-          {about.tags.map((tag) => (
-            <li
-              key={tag}
-              className="border border-wine-700/40 px-3.5 py-2 text-[12px] font-medium uppercase tracking-[0.08em] text-wine-800"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:mt-20">
-          {about.certificates.map((item, index) => (
-            <FadeIn key={item.index} delay={index * 0.08} className="h-full">
-              <article className="flex h-full flex-col border border-wine-700/25 bg-cream-100 p-8 sm:p-10">
-                <div className="flex items-baseline justify-between gap-4">
-                  <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">
-                    Сертификат
-                  </p>
-                  <p className="font-serif text-[2rem] leading-none text-gold-400">{item.index}</p>
-                </div>
-                <div className="mt-8 border border-gold-400/50 px-6 py-10">
-                  <h3 className="font-serif text-[2rem] leading-tight text-ink-900">{item.title}</h3>
-                  <p className="mt-4 text-ink-500">{item.issuer}</p>
-                </div>
-                <p className="mt-6 text-sm leading-relaxed text-ink-500">{item.note}</p>
-              </article>
-            </FadeIn>
-          ))}
-        </div>
       </div>
     </section>
   );

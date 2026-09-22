@@ -79,56 +79,47 @@ export function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_78%_42%,rgba(107,27,43,0.62),transparent_58%)]" />
       <div className="absolute inset-0 bg-gradient-to-r from-wine-950 from-35% via-wine-950/80 to-transparent" />
       <HeroBlob />
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1120px] flex-col justify-end px-5 pt-36 pb-16 sm:px-8 sm:pb-20 lg:justify-center lg:pt-32 lg:pb-24">
-        <motion.p
-          className="mb-6 text-[13px] font-medium uppercase tracking-[0.08em] text-gold-400"
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.38, ease: EXPO }}
-        >
-          {hero.kicker}
-        </motion.p>
-        <h1>
+      <svg
+        aria-hidden
+        className="pointer-events-none absolute bottom-[12%] -left-10 z-0 h-64 w-64 text-gold-400/25 sm:h-80 sm:w-80"
+        viewBox="0 0 200 200"
+        fill="none"
+      >
+        <circle cx="78" cy="104" r="58" stroke="currentColor" strokeWidth="0.7" />
+        <circle cx="122" cy="92" r="34" stroke="currentColor" strokeWidth="0.7" />
+      </svg>
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1120px] flex-col justify-center px-5 pt-32 pb-16 sm:px-8 lg:pt-28 lg:pb-20">
+        <h1 className="max-w-[18ch] sm:max-w-none">
           <RevealLines
             as="span"
             play="load"
             delay={0.46}
             lines={hero.titleMobile}
-            className="font-serif text-[2rem] leading-[1.08] tracking-[-0.015em] text-cream-50 sm:text-[2.5rem] lg:hidden"
+            className="font-serif text-[2.15rem] leading-[1.02] font-bold tracking-[-0.02em] text-cream-50 sm:text-[2.75rem] lg:hidden"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.46}
             lines={hero.titleDesktop}
-            className="hidden font-serif text-[3.25rem] leading-[1.05] tracking-[-0.02em] text-cream-50 lg:block xl:text-[4.5rem]"
+            className="hidden font-serif text-[3.25rem] leading-[0.98] font-bold tracking-[-0.025em] text-cream-50 lg:block xl:text-[4.15rem]"
           />
         </h1>
-        <motion.p
-          className="mt-8 max-w-xl text-base leading-relaxed text-cream-100 sm:text-lg"
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.95, ease: EXPO }}
-        >
-          {hero.subtitle}
-        </motion.p>
-        <motion.p
-          className="mt-5 max-w-lg text-[1.0625rem] leading-[1.7] text-cream-50/75"
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.08, ease: EXPO }}
-        >
-          {hero.lead}
-        </motion.p>
         <motion.div
-          className="mt-10"
+          className="mt-8 max-w-xl sm:mt-10"
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.2, ease: EXPO }}
+          transition={{ duration: 0.9, delay: 1.05, ease: EXPO }}
         >
-          <MagneticButton href="#contact" variant="gold">
-            {hero.cta}
-          </MagneticButton>
+          <p className="font-serif text-[1.45rem] leading-snug text-cream-100 italic sm:text-[1.7rem]">
+            {hero.subtitle}
+          </p>
+          <p className="mt-5 text-[1.0625rem] leading-[1.7] text-cream-50/72">{hero.lead}</p>
+          <div className="mt-8">
+            <MagneticButton href="#contact" variant="gold">
+              {hero.cta}
+            </MagneticButton>
+          </div>
         </motion.div>
       </div>
       <div className="absolute inset-x-0 bottom-0 z-10 h-px bg-gold-400/50" />
