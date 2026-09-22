@@ -108,7 +108,7 @@ export function Pricing() {
         <div
           role="tablist"
           aria-label="Контур работы"
-          className="mt-12 inline-grid grid-cols-2 border border-wine-700/30 p-1"
+          className="mt-12 inline-grid grid-cols-2 rounded-full border border-wine-700/30 p-1"
         >
           {pricing.modes.map((item) => {
             const selected = mode === item.id;
@@ -121,12 +121,12 @@ export function Pricing() {
                 aria-selected={selected}
                 aria-controls={`panel-${item.id}`}
                 onClick={() => setMode(item.id)}
-                className="relative px-5 py-3 text-[12px] font-medium uppercase tracking-[0.08em] sm:px-8 sm:text-[13px]"
+                className="relative rounded-full px-5 py-3 text-[12px] font-medium uppercase tracking-[0.08em] sm:px-8 sm:text-[13px]"
               >
                 {selected ? (
                   <motion.span
                     layoutId="pricing-indicator"
-                    className="absolute inset-0 bg-wine-800"
+                    className="absolute inset-0 rounded-full bg-wine-800"
                     transition={{ duration: 0.45, ease: EXPO }}
                   />
                 ) : null}

@@ -15,8 +15,8 @@
   --color-ink-900: #1e1614;
   --color-ink-500: #6b5d57;
 
-  --font-sans: var(--font-switzer), var(--font-onest), "Segoe UI", sans-serif;
-  --font-serif: var(--font-bodoni), var(--font-cormorant), "Palatino Linotype", Palatino, serif;
+  --font-sans: var(--font-manrope), "Segoe UI", sans-serif;
+  --font-serif: var(--font-source-serif), "Iowan Old Style", "Palatino Linotype", Palatino, serif;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-hover: cubic-bezier(0.65, 0, 0.35, 1);

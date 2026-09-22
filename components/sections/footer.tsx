@@ -31,7 +31,7 @@ function MailIcon() {
 }
 
 const socialClass =
-  "inline-flex h-11 w-11 items-center justify-center border border-gold-400/80 text-gold-400 transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:bg-gold-400 hover:text-wine-950";
+  "inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/80 text-gold-400 transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:bg-gold-400 hover:text-wine-950";
 
 export function Footer() {
   const year = new Date().getFullYear();

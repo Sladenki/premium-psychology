@@ -107,14 +107,14 @@ export function MagneticButton({
           y.set(0);
         }}
         className={cn(
-          "relative inline-flex items-center justify-center overflow-hidden px-7 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em]",
+          "relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em]",
           styles.button,
         )}
       >
         <span className="relative z-0">{children}</span>
         <motion.span
           aria-hidden
-          className="absolute inset-0 z-10 flex items-center justify-center"
+          className="absolute inset-0 z-10 flex items-center justify-center rounded-full"
           initial={false}
           animate={{ clipPath: reduce ? "circle(0% at 50% 50%)" : clip }}
           transition={{ duration: 0.55, ease: HOVER }}
