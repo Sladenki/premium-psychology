@@ -7,7 +7,7 @@ import { EXPO } from "@/lib/easing";
 import { cn } from "@/lib/cn";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { Atmosphere } from "@/components/ui/atmosphere";
-import { FadeIn, RevealLines } from "@/components/ui/reveal";
+import { RevealLines } from "@/components/ui/reveal";
 
 const gridVariants = {
   hidden: {},
@@ -113,17 +113,10 @@ export function Pricing() {
     <section id="formats" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
       <Atmosphere variant="formats" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-wine-700">
-          {pricing.label}
-        </p>
-        <span className="mt-5 block h-px w-10 bg-gold-400" />
         <RevealLines
           lines={pricing.title}
-          className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
+          className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
-        <FadeIn className="mt-6 max-w-xl">
-          <p className="text-[1.0625rem] leading-[1.7] text-ink-500">{pricing.lede}</p>
-        </FadeIn>
 
         <div ref={gridRef}>
         <div

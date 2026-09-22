@@ -50,6 +50,15 @@ body {
   .has-custom-cursor * {
     cursor: none !important;
   }
+
+  .has-custom-cursor input,
+  .has-custom-cursor textarea {
+    cursor: text !important;
+  }
+
+  .has-custom-cursor select {
+    cursor: auto !important;
+  }
 }
 
 @keyframes marquee {

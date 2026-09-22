@@ -110,13 +110,9 @@ export function About() {
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div className="grid items-stretch gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
-            <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-wine-700">
-              {about.label}
-            </p>
-            <span className="mt-5 block h-px w-10 bg-gold-400" />
             <RevealLines
               lines={about.title}
-              className="mt-6 font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
+              className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
             />
             <FadeIn className="mt-8 max-w-xl" delay={0.1}>
               <p className="font-serif text-[1.75rem] leading-[1.3] text-wine-800 italic sm:text-[2rem]">

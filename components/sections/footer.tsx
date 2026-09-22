@@ -37,7 +37,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-wine-800 text-cream-50">
+    <footer className="bg-wine-800 text-cream-50">
       <div className="mx-auto grid w-full max-w-[1120px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-[1.4fr_1fr] lg:py-24">
         <div>
           <p className="font-serif text-[2.75rem] leading-none tracking-[-0.02em] sm:text-6xl">
