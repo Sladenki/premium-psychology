@@ -1,0 +1,53 @@
+"use client";
+
+import { useMotionValueEvent, useScroll } from "framer-motion";
+import { useEffect, useState } from "react";
+import { nav } from "@/lib/content";
+import { cn } from "@/lib/cn";
+
+export function Header() {
+  const { scrollY } = useScroll();
+  const [scrolled, setScrolled] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (value) => {
+    setScrolled(value > 24);
+  });
+
+  useEffect(() => {
+    const sync = () => setScrolled(window.scrollY > 24);
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+    return () => window.removeEventListener("scroll", sync);
+  }, []);
+
+  return (
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-40 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        scrolled
+          ? "border-b border-wine-700/10 bg-cream-50/92 text-ink-900 backdrop-blur-md"
+          : "bg-transparent text-cream-50",
+      )}
+    >
+      <div className="mx-auto flex w-full max-w-[1120px] items-center justify-between gap-6 px-5 py-4 sm:px-8">
+        <a href="#top" className="group block leading-none" data-cursor="expand">
+          <span className="block font-serif text-[2rem] tracking-[-0.02em]">Олитто</span>
+          <span className="mt-1 block text-[11px] font-medium uppercase tracking-[0.14em] opacity-80">
+            и партнёры
+          </span>
+        </a>
+        <nav aria-label="Разделы" className="hidden items-center gap-8 md:flex">
+          {nav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:text-gold-400"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
