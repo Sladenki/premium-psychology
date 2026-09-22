@@ -42,10 +42,10 @@ function Check() {
 
 function PlanCard({ plan }: { plan: Plan }) {
   return (
-    <motion.div variants={cardVariants(Boolean(plan.recommended))} className="h-full">
+    <motion.div variants={cardVariants(Boolean(plan.recommended))} className="h-full min-w-0">
       <article
         className={cn(
-          "relative flex h-full flex-col rounded-[1.75rem] p-8 sm:p-9",
+          "relative flex h-full min-w-0 flex-col rounded-[1.75rem] p-8 sm:p-9",
           plan.recommended
             ? "bg-wine-800 text-cream-50 shadow-[0_24px_50px_-28px_rgba(42,10,18,0.65)] lg:-translate-y-3"
             : "border border-wine-700/12 bg-cream-50",
@@ -62,13 +62,13 @@ function PlanCard({ plan }: { plan: Plan }) {
         </p>
         <h3
           className={cn(
-            "font-serif text-[2rem] leading-tight lg:min-h-[5rem]",
+            "min-w-0 font-sans text-[1.65rem] leading-snug font-medium break-words sm:min-h-[4.4rem] sm:text-[1.85rem]",
             plan.recommended ? "text-cream-50" : "text-ink-900",
           )}
         >
           {plan.name}
         </h3>
-        <p className="mt-5 font-serif text-[2.5rem] leading-none text-gold-400 sm:text-[2.75rem]">
+        <p className="mt-5 font-serif text-[1.85rem] leading-none break-words text-gold-400 sm:text-[2.15rem]">
           {plan.price}
         </p>
         <p

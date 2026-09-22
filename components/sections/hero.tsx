@@ -95,14 +95,14 @@ export function Hero() {
             play="load"
             delay={0.46}
             lines={hero.titleMobile}
-            className="font-serif text-[2.15rem] leading-[1.02] font-bold tracking-[-0.02em] text-cream-50 sm:text-[2.75rem] lg:hidden"
+              className="font-serif text-[2rem] leading-[1.05] font-medium tracking-[-0.03em] text-cream-50 sm:text-[2.45rem] lg:hidden"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.46}
             lines={hero.titleDesktop}
-            className="hidden font-serif text-[3.25rem] leading-[0.98] font-bold tracking-[-0.025em] text-cream-50 lg:block xl:text-[4.15rem]"
+              className="hidden font-serif text-[2.85rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 lg:block xl:text-[3.45rem]"
           />
         </h1>
         <motion.div
@@ -111,7 +111,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.05, ease: EXPO }}
         >
-          <p className="font-serif text-[1.45rem] leading-snug text-cream-100 italic sm:text-[1.7rem]">
+          <p className="font-sans text-[1.35rem] leading-snug text-cream-100 italic sm:text-[1.5rem]">
             {hero.subtitle}
           </p>
           <p className="mt-5 text-[1.0625rem] leading-[1.7] text-cream-50/72">{hero.lead}</p>

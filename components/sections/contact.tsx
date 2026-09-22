@@ -131,7 +131,7 @@ export function ContactForm() {
         />
 
         {sent ? (
-          <p className="mt-12 max-w-xl font-serif text-[1.85rem] leading-snug text-ink-900 italic sm:text-[2.15rem]">
+          <p className="mt-12 max-w-xl font-sans text-[1.55rem] leading-snug text-ink-900 italic sm:text-[1.75rem]">
             {contactForm.thanks}
           </p>
         ) : (

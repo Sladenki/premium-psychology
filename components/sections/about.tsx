@@ -115,14 +115,14 @@ export function About() {
               className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
             />
             <FadeIn className="mt-8 max-w-xl" delay={0.1}>
-              <p className="font-serif text-[1.75rem] leading-[1.3] text-wine-800 italic sm:text-[2rem]">
+              <p className="font-sans text-[1.45rem] leading-[1.35] text-wine-800 italic sm:text-[1.65rem]">
                 {about.lede}
               </p>
             </FadeIn>
             <FadeIn className="mt-10" delay={0.05}>
               <ul className="max-w-xl space-y-3 border-l border-gold-400/70 pl-6">
                 {about.quotes.map((quote) => (
-                  <li key={quote} className="font-serif text-[1.65rem] leading-snug text-ink-900 italic sm:text-[1.85rem]">
+                  <li key={quote} className="font-sans text-[1.35rem] leading-snug text-ink-900 italic sm:text-[1.5rem]">
                     «{quote}»
                   </li>
                 ))}
@@ -182,12 +182,12 @@ export function About() {
 
       <div className="relative z-10 mt-16 border-y border-wine-700/10 bg-cream-100/80 py-14 sm:mt-20 sm:py-16">
         <FadeIn className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <p className="font-serif text-[1.85rem] leading-snug text-ink-900 italic sm:text-[2.35rem]">
+          <p className="font-sans text-[1.55rem] leading-snug text-ink-900 italic sm:text-[1.85rem]">
             {about.partnersLead}
           </p>
           <ul className="mt-8 flex flex-wrap items-center justify-center">
             {about.partnersRoles.map((role, index) => (
-              <li key={role} className="flex items-center font-serif text-[1.15rem] text-wine-800 sm:text-[1.3rem]">
+              <li key={role} className="flex items-center font-sans text-[1.05rem] text-wine-800 sm:text-[1.15rem]">
                 {index > 0 ? (
                   <span className="px-2.5 text-gold-400" aria-hidden>
                     ·
