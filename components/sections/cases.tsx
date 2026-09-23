@@ -56,7 +56,7 @@ export function Cases() {
 
   return (
     <section id="cases" className="relative overflow-hidden bg-cream-100 py-24 sm:py-32 lg:py-40">
-      <Atmosphere variant="method" />
+      <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={cases.title}

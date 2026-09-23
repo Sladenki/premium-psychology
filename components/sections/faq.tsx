@@ -51,7 +51,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 export function Faq() {
   return (
     <section id="faq" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
-      <Atmosphere variant="practice" />
+      <Atmosphere variant="faq" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={faq.title}

@@ -123,7 +123,7 @@ export function ContactForm() {
 
   return (
     <section id="contact" className="relative bg-cream-100 py-24 sm:py-32 lg:py-40">
-      <Atmosphere variant="formats" />
+      <Atmosphere variant="contact" />
       <div className="relative z-10 mx-auto w-full max-w-[760px] px-5 sm:px-8">
         <RevealLines
           lines={contactForm.title}
