@@ -1,18 +1,19 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { faq } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
+import { cn } from "@/lib/cn";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
 
-function FaqItem({ question, answer }: { question: string; answer: string }) {
+function FaqItem({ question, answer }: { question: string; answer: string[] }) {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
 
   return (
-    <div className="border-t border-wine-700/15">
+    <div className="border-t border-wine-700/15 [overflow-anchor:none]">
       <button
         type="button"
         aria-expanded={open}
@@ -30,20 +31,23 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
           +
         </motion.span>
       </button>
-      <AnimatePresence initial={false}>
-        {open ? (
-          <motion.div
-            key="answer"
-            initial={reduce ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={reduce ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.5, ease: EXPO }}
-            className="overflow-hidden"
-          >
-            <p className="max-w-3xl pb-7 text-[1.0625rem] leading-[1.7] text-ink-500">{answer}</p>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+      <div
+        className={cn(
+          "grid [overflow-anchor:none]",
+          reduce ? "" : "transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="overflow-hidden" inert={open ? undefined : true}>
+          <div className="max-w-3xl space-y-4 pb-7">
+            {answer.map((paragraph) => (
+              <p key={paragraph} className="text-[1.0625rem] leading-[1.7] text-ink-500">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -58,7 +62,7 @@ export function Faq() {
           className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
-        <div className="mt-12 border-b border-wine-700/15 sm:mt-16">
+        <div className="mt-12 border-b border-wine-700/15 [overflow-anchor:none] sm:mt-16">
           {faq.items.map((item) => (
             <FaqItem key={item.question} question={item.question} answer={item.answer} />
           ))}

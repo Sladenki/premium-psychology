@@ -1,8 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { pricing, type Plan, type PricingMode } from "@/lib/content";
+import { useRef } from "react";
+import { pricing, type Plan } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
 import { cn } from "@/lib/cn";
 import { MagneticButton } from "@/components/ui/magnetic-button";
@@ -51,15 +51,6 @@ function PlanCard({ plan }: { plan: Plan }) {
             : "border border-wine-700/12 bg-cream-50",
         )}
       >
-        <p
-          aria-hidden={plan.recommended ? undefined : true}
-          className={cn(
-            "mb-8 h-4 text-[12px] font-medium uppercase tracking-[0.08em]",
-            plan.recommended ? "text-gold-400" : "text-transparent",
-          )}
-        >
-          {plan.recommended ? "Рекомендуем" : "·"}
-        </p>
         <h3
           className={cn(
             "min-w-0 font-sans text-[1.65rem] leading-snug font-medium break-words sm:min-h-[4.4rem] sm:text-[1.85rem]",
@@ -68,13 +59,21 @@ function PlanCard({ plan }: { plan: Plan }) {
         >
           {plan.name}
         </h3>
-        <p className="mt-5 font-serif text-[1.85rem] leading-none break-words text-gold-400 sm:text-[2.15rem]">
-          {plan.price}
+        <p className="mt-5 font-serif text-[1.7rem] leading-[1.15] break-words text-gold-400 sm:min-h-[4.4rem] sm:text-[1.95rem]">
+          {plan.lead}
         </p>
         <p
           className={cn(
-            "mt-5 text-[1.02rem] leading-[1.65]",
-            plan.recommended ? "text-cream-100/75" : "text-ink-500",
+            "mt-5 font-sans text-[1.08rem] leading-snug italic",
+            plan.recommended ? "text-cream-100" : "text-wine-800",
+          )}
+        >
+          {plan.summary}
+        </p>
+        <p
+          className={cn(
+            "mt-4 text-[1.02rem] leading-[1.65]",
+            plan.recommended ? "text-cream-100/80" : "text-ink-900",
           )}
         >
           {plan.description}
@@ -94,7 +93,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           ))}
         </ul>
         <div className="mt-auto pt-10">
-          <MagneticButton href="#contact" variant={plan.recommended ? "gold" : "line"}>
+          <MagneticButton href="#contact" variant="gold">
             {pricing.cta}
           </MagneticButton>
         </div>
@@ -106,7 +105,7 @@ function PlanCard({ plan }: { plan: Plan }) {
 export function Pricing() {
   const gridRef = useRef<HTMLDivElement>(null);
   const inView = useInView(gridRef, { once: true, margin: "0px 0px -12% 0px" });
-  const [mode, setMode] = useState<PricingMode>("business");
+  const mode = "business" as const;
   const plans = pricing.plans[mode];
 
   return (
@@ -117,8 +116,12 @@ export function Pricing() {
           lines={pricing.title}
           className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
+        <p className="mt-6 max-w-xl font-sans text-[1.35rem] leading-snug text-wine-800 italic sm:text-[1.6rem]">
+          {pricing.lede}
+        </p>
 
         <div ref={gridRef}>
+        {/*
         <div
           role="tablist"
           aria-label="Контур работы"
@@ -151,18 +154,16 @@ export function Pricing() {
             );
           })}
         </div>
+        */}
 
         <AnimatePresence mode="wait">
           <motion.div
             key={mode}
-            id={`panel-${mode}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${mode}`}
             variants={gridVariants}
             initial="hidden"
             animate={inView ? "show" : "hidden"}
             exit="exit"
-            className="mt-10 grid gap-6 lg:mt-14 lg:grid-cols-3 lg:pt-6"
+            className="mt-14 grid gap-6 lg:mt-20 lg:grid-cols-3 lg:pt-6"
           >
             {plans.map((plan) => (
               <PlanCard key={plan.name} plan={plan} />

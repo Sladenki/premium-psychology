@@ -55,7 +55,7 @@ function Portrait({
           alt="Полина Олитто"
           fill
           sizes={sizes}
-          className="object-cover"
+          className="origin-[center_18%] scale-[1.34] object-cover"
           style={{ objectPosition }}
         />
       </div>
@@ -170,7 +170,7 @@ export function About() {
           <Portrait
             src={portraitQuiet}
             sizes="(min-width: 1024px) 440px, 80vw"
-            objectPosition="center 22%"
+            objectPosition="center 16%"
             className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-[28rem] lg:justify-self-end"
           />
         </div>
@@ -180,21 +180,15 @@ export function About() {
 
       <div className="relative z-10 mt-16 border-y border-wine-700/10 bg-cream-100/80 py-14 sm:mt-20 sm:py-16">
         <FadeIn className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <p className="font-sans text-[1.55rem] leading-snug text-ink-900 italic sm:text-[1.85rem]">
+          <p className="font-serif text-[1.85rem] leading-[1.2] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
             {about.partnersLead}
           </p>
-          <ul className="mt-8 flex flex-wrap items-center justify-center">
-            {about.partnersRoles.map((role, index) => (
-              <li key={role} className="flex items-center font-sans text-[1.05rem] text-wine-800 sm:text-[1.15rem]">
-                {index > 0 ? (
-                  <span className="px-2.5 text-gold-400" aria-hidden>
-                    ·
-                  </span>
-                ) : null}
-                {role}
-              </li>
-            ))}
-          </ul>
+          <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-900 sm:text-[1.08rem]">
+            {about.partnersBody}
+          </p>
+          <p className="mx-auto mt-5 max-w-xl font-sans text-[1.2rem] leading-snug text-wine-800 italic sm:text-[1.35rem]">
+            {about.partnersClose}
+          </p>
         </FadeIn>
       </div>
     </section>
