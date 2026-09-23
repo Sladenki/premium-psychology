@@ -3,7 +3,6 @@
 import { animate, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import portraitSeated from "../../photos/ph1.jpg";
 import portraitQuiet from "../../photos/ph2.jpg";
 import { about } from "@/lib/content";
 import { cn } from "@/lib/cn";
@@ -39,51 +38,38 @@ function YearCounter() {
 
 function Portrait({
   src,
-  priority = false,
   sizes,
   objectPosition,
   className,
-  frameClassName,
 }: {
   src: StaticImageData;
-  priority?: boolean;
   sizes: string;
   objectPosition: string;
   className?: string;
-  frameClassName?: string;
 }) {
   return (
-    <figure className={cn("relative", className)}>
-      <span aria-hidden className="absolute top-0 left-0 z-10 h-8 w-8 border-t-2 border-l-2 border-gold-400" />
-      <span aria-hidden className="absolute right-0 bottom-0 z-10 h-8 w-8 border-r-2 border-b-2 border-gold-400" />
-      <div className={cn("relative h-full bg-wine-950", frameClassName)}>
-        <div className="absolute inset-2.5 overflow-hidden sm:inset-3">
-          <Image
-            src={src}
-            alt="Полина Олитто"
-            fill
-            priority={priority}
-            sizes={sizes}
-            className="object-cover"
-            style={{ objectPosition }}
-          />
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(250,246,240,0.28)]"
-          />
-        </div>
+    <figure className={cn("overflow-hidden rounded-[1.75rem]", className)}>
+      <div className="relative aspect-[4/5]">
+        <Image
+          src={src}
+          alt="Полина Олитто"
+          fill
+          sizes={sizes}
+          className="object-cover"
+          style={{ objectPosition }}
+        />
       </div>
     </figure>
   );
 }
 
 function LogoMarquee() {
-  const sequence = Array.from({ length: 4 }, () => about.logos).flat();
+  const sequence = Array.from({ length: 2 }, () => about.logos).flat();
 
   return (
     <div
       className="marquee relative z-10 mt-16 w-full overflow-hidden border-y border-wine-700/15 py-7 sm:mt-20 sm:py-8"
-      aria-label="Организации, в которых сложился опыт"
+      aria-label="Направления работы"
     >
       <div className="marquee-track flex w-max">
         {[0, 1].map((copy) => (
@@ -108,72 +94,84 @@ export function About() {
     <section id="practice" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-stretch gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div>
-            <RevealLines
-              lines={about.title}
-              className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
-            />
-            <FadeIn className="mt-8 max-w-xl" delay={0.1}>
-              <p className="font-sans text-[1.45rem] leading-[1.35] text-wine-800 italic sm:text-[1.65rem]">
-                {about.lede}
-              </p>
-            </FadeIn>
-            <FadeIn className="mt-10" delay={0.05}>
-              <ul className="max-w-xl space-y-3 border-l border-gold-400/70 pl-6">
-                {about.quotes.map((quote) => (
-                  <li key={quote} className="font-sans text-[1.35rem] leading-snug text-ink-900 italic sm:text-[1.5rem]">
-                    «{quote}»
-                  </li>
-                ))}
-              </ul>
-            </FadeIn>
-          </div>
-          <Portrait
-            src={portraitSeated}
-            priority
-            sizes="(min-width: 1024px) 420px, 100vw"
-            objectPosition="center 22%"
-            className="h-full min-h-[28rem]"
-            frameClassName="min-h-[28rem]"
+        <div>
+          <RevealLines
+            lines={about.title}
+            className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
           />
-        </div>
-
-        <div className="mt-16 rounded-[1.75rem] bg-cream-100 px-6 py-8 sm:mt-20 sm:px-10 sm:py-10">
-          <div className="grid gap-8 lg:grid-cols-[14rem_1fr] lg:gap-12">
-            <h3 className="font-serif text-[2rem] leading-tight text-ink-900">{about.behindLabel}</h3>
-            <ul className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
-              {about.behind.map((item, index) => (
-                <li key={item} className="flex gap-4">
-                  <span className="font-serif text-[1.35rem] leading-none text-gold-400 lining-nums">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[1.05rem] leading-snug text-ink-900">{item}</span>
+          <FadeIn className="mt-8 max-w-3xl" delay={0.1}>
+            <p className="font-sans text-[1.45rem] leading-[1.35] text-wine-800 italic sm:text-[1.7rem]">
+              {about.lede}
+            </p>
+            <p className="mt-4 max-w-2xl font-sans text-[1.15rem] leading-snug text-wine-800/80 italic sm:text-[1.3rem]">
+              {about.ledeMore}
+            </p>
+          </FadeIn>
+          <FadeIn className="mt-10" delay={0.05}>
+            <ul className="grid max-w-4xl gap-x-12 gap-y-3 border-l border-gold-400/70 pl-6 sm:grid-cols-2">
+              {about.quotes.map((quote) => (
+                <li key={quote} className="font-sans text-[1.25rem] leading-snug text-ink-900 italic sm:text-[1.4rem]">
+                  «{quote}»
                 </li>
               ))}
             </ul>
+          </FadeIn>
+        </div>
+
+        <div className="mt-16 rounded-[1.75rem] bg-cream-100 px-6 py-8 sm:mt-20 sm:px-10 sm:py-10">
+          <div className="grid gap-8 lg:grid-cols-[18rem_1fr] lg:gap-12">
+            <h3 className="font-serif text-[2rem] leading-tight text-ink-900 sm:text-[2.25rem]">
+              {about.behindLabel}
+            </h3>
+            <div>
+              <p className="mb-8 max-w-xl font-sans text-[1.2rem] leading-snug text-wine-800 italic sm:text-[1.35rem]">
+                {about.behindLede}
+              </p>
+              <ul className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
+                {about.behind.map((item, index) => (
+                  <li key={item} className="flex gap-4">
+                    <span className="font-serif text-[1.35rem] leading-none text-gold-400 lining-nums">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[1.05rem] leading-snug text-ink-900">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
-        <div className="mt-16 grid items-center gap-10 sm:mt-20 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
+        <div className="mt-16 grid items-start gap-12 sm:mt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <div>
             <p
-              className="font-serif text-[clamp(5.5rem,12vw,8rem)] leading-[0.82] text-gold-400"
+              className="font-serif text-[clamp(4.75rem,10vw,7.25rem)] leading-[0.82] text-gold-400"
               aria-label={`${about.years}+ ${about.yearsLabel}`}
             >
               <YearCounter />
               <span aria-hidden>+</span>
             </p>
-            <p className="mt-6 max-w-md font-serif text-[1.75rem] leading-snug text-ink-900 sm:text-[2rem]">
+            <p className="mt-5 max-w-sm font-serif text-[1.75rem] leading-snug text-ink-900 sm:text-[2rem]">
               {about.yearsLabel}
             </p>
+            <div className="mt-10 border-t border-gold-400/60 pt-8">
+              <p className="font-serif text-[2rem] leading-tight tracking-[-0.02em] text-ink-900 sm:text-[2.4rem]">
+                {about.founder.name}
+              </p>
+              <p className="mt-3 text-[12px] font-medium uppercase tracking-[0.14em] text-wine-700">
+                {about.founder.role}
+              </p>
+              <div className="mt-6 max-w-xl space-y-4 text-[1.02rem] leading-[1.75] text-ink-900 sm:text-[1.0625rem]">
+                {about.founder.bio.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
           </div>
           <Portrait
             src={portraitQuiet}
-            sizes="(min-width: 1024px) 380px, 80vw"
-            objectPosition="center 18%"
-            className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-none lg:justify-self-end"
-            frameClassName="aspect-[4/5]"
+            sizes="(min-width: 1024px) 440px, 80vw"
+            objectPosition="center 22%"
+            className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-[28rem] lg:justify-self-end"
           />
         </div>
       </div>

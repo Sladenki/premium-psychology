@@ -4,7 +4,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { hero } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
-import { MagneticButton } from "@/components/ui/magnetic-button";
 import { RevealLines } from "@/components/ui/reveal";
 
 function Curtain() {
@@ -58,60 +57,43 @@ export function Hero() {
             as="span"
             play="load"
             delay={0.46}
-            lines={hero.titleMobile.slice(0, 2)}
-            className="font-serif text-[2rem] leading-[1.05] font-medium tracking-[-0.03em] text-cream-50 sm:text-[2.4rem] lg:hidden"
-          />
-          <RevealLines
-            as="span"
-            play="load"
-            delay={0.58}
-            lines={hero.titleMobile.slice(2, 4)}
-            className="font-sans text-[2.15rem] leading-[1.08] text-cream-100 italic sm:text-[2.65rem] lg:hidden"
-          />
-          <RevealLines
-            as="span"
-            play="load"
-            delay={0.72}
-            lines={hero.titleMobile.slice(4)}
-            className="font-serif text-[2rem] leading-[1.05] font-medium tracking-[-0.03em] text-cream-50 sm:text-[2.4rem] lg:hidden"
-          />
-          <RevealLines
-            as="span"
-            play="load"
-            delay={0.46}
-            lines={[hero.titleDesktop[0]]}
-            className="hidden font-serif text-[2.7rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 lg:block xl:text-[3.35rem]"
+            lines={[hero.title[0]]}
+            className="font-serif text-[2.35rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3rem] lg:text-[3.5rem] xl:text-[4.15rem]"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.56}
-            lines={[hero.titleDesktop[1]]}
-            className="mt-1 hidden font-sans text-[2.5rem] leading-[1.08] text-cream-100 italic lg:block xl:text-[3.15rem]"
+            lines={[hero.title[1]]}
+            className="mt-1 font-sans text-[1.85rem] leading-[1.08] text-cream-100 italic sm:text-[2.35rem] lg:text-[2.75rem] xl:text-[3.15rem]"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.66}
-            lines={[hero.titleDesktop[2]]}
-            className="hidden font-serif text-[2.7rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 lg:block xl:text-[3.35rem]"
+            lines={hero.title[2].split(" ")}
+            className="font-serif text-[2.35rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3rem] lg:hidden"
+          />
+          <RevealLines
+            as="span"
+            play="load"
+            delay={0.66}
+            lines={[hero.title[2]]}
+            className="hidden font-serif text-[3.5rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 lg:block xl:text-[4.15rem]"
           />
         </h1>
         <motion.div
-          className="mt-10 max-w-3xl border-l border-gold-400/70 pl-5 sm:mt-12 sm:pl-6"
+          className="mt-10 max-w-2xl border-l border-gold-400/70 pl-5 sm:mt-12 sm:pl-6"
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.05, ease: EXPO }}
         >
-          <p className="font-sans text-[1.25rem] leading-snug text-cream-50 italic sm:text-[1.45rem]">
+          <p className="font-sans text-[1.35rem] leading-snug text-cream-50 italic sm:text-[1.7rem] lg:text-[1.9rem]">
             {hero.subtitle}
           </p>
-          <div className="mt-6 flex flex-col gap-6 sm:mt-7 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-            <p className="max-w-md text-[1.02rem] leading-[1.7] text-cream-50/70">{hero.lead}</p>
-            <MagneticButton href="#contact" variant="gold">
-              {hero.cta}
-            </MagneticButton>
-          </div>
+          <p className="mt-5 max-w-xl text-[1.02rem] leading-[1.7] text-cream-50/75 sm:text-[1.08rem]">
+            {hero.lead}
+          </p>
         </motion.div>
       </div>
       <div className="absolute inset-x-0 bottom-0 z-10 h-px bg-gold-400/50" />

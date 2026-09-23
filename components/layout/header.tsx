@@ -2,8 +2,9 @@
 
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
-import { nav } from "@/lib/content";
+import { hero, nav } from "@/lib/content";
 import { cn } from "@/lib/cn";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function Header() {
   const { scrollY } = useScroll();
@@ -36,17 +37,22 @@ export function Header() {
             и партнёры
           </span>
         </a>
-        <nav aria-label="Разделы" className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
-          {nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-[12px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:text-gold-400 lg:text-[13px]"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        <div className="flex shrink-0 items-center gap-4 lg:gap-8">
+          <nav aria-label="Разделы" className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
+            {nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-[12px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:text-gold-400 lg:text-[13px]"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <MagneticButton href="#contact" variant="gold" className="shrink-0">
+            {hero.cta}
+          </MagneticButton>
+        </div>
       </div>
     </header>
   );
