@@ -124,7 +124,7 @@ export function ContactForm() {
   return (
     <section id="contact" className="relative bg-cream-100 py-24 sm:py-32 lg:py-40">
       <Atmosphere variant="formats" />
-      <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-[760px] px-5 sm:px-8">
         <RevealLines
           lines={contactForm.title}
           className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
