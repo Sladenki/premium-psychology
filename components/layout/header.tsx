@@ -36,12 +36,12 @@ export function Header() {
             и партнёры
           </span>
         </a>
-        <nav aria-label="Разделы" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Разделы" className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
           {nav.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="text-[13px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:text-gold-400"
+              className="text-[12px] font-medium uppercase tracking-[0.08em] transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:text-gold-400 lg:text-[13px]"
             >
               {item.label}
             </a>
