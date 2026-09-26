@@ -19,7 +19,7 @@ function FaqItem({ question, answer }: { question: string; answer: string[] }) {
         aria-expanded={open}
         data-cursor="expand"
         onClick={() => setOpen((value) => !value)}
-        className="flex w-full items-start justify-between gap-6 py-6 text-left font-serif text-[1.35rem] leading-snug text-ink-900 sm:py-7 sm:text-[1.65rem]"
+        className="flex w-full items-start justify-between gap-4 py-5 text-left font-serif text-[1.2rem] leading-snug text-ink-900 sm:gap-6 sm:py-7 sm:text-[1.65rem]"
       >
         <span>{question}</span>
         <motion.span
@@ -54,12 +54,12 @@ function FaqItem({ question, answer }: { question: string; answer: string[] }) {
 
 export function Faq() {
   return (
-    <section id="faq" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
+    <section id="faq" className="relative overflow-hidden bg-cream-50 py-16 sm:py-28 lg:py-40">
       <Atmosphere variant="faq" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={faq.title}
-          className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
+          className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
         <div className="mt-12 border-b border-wine-700/15 [overflow-anchor:none] sm:mt-16">

@@ -25,10 +25,17 @@
 html {
   color-scheme: light;
   scroll-behavior: auto;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5.5rem;
   scrollbar-gutter: stable;
   scrollbar-width: thin;
   scrollbar-color: #6b1b2b #f3ece1;
+  overflow-x: clip;
+}
+
+@media (max-width: 640px) {
+  html {
+    scrollbar-gutter: auto;
+  }
 }
 
 html::-webkit-scrollbar {
@@ -54,6 +61,7 @@ body {
   color: var(--color-ink-900);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 ::selection {

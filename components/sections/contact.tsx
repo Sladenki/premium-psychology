@@ -24,7 +24,7 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-cream-100 py-24 sm:py-32 lg:py-40">
+    <section id="contact" className="relative overflow-hidden bg-cream-100 py-16 sm:py-28 lg:py-40">
       <Atmosphere variant="contact" />
       <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_32rem]">
         <div>
@@ -32,17 +32,17 @@ export function ContactForm() {
             <RevealLines
               as="span"
               lines={[contactForm.title[0]]}
-              className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.03em] text-ink-900 sm:text-6xl"
+              className="font-serif text-[2.05rem] leading-[1.08] tracking-[-0.03em] text-ink-900 sm:text-6xl"
             />
             <RevealLines
               as="span"
               lines={[contactForm.title[1]]}
-              className="mt-1 font-sans text-[2.15rem] leading-[1.08] text-wine-800 italic sm:text-[2.75rem]"
+              className="mt-1 font-sans text-[1.7rem] leading-[1.1] text-wine-800 italic sm:text-[2.75rem]"
             />
             <RevealLines
               as="span"
               lines={[contactForm.title[2]]}
-              className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.03em] text-ink-900 sm:text-6xl"
+              className="font-serif text-[2.05rem] leading-[1.08] tracking-[-0.03em] text-ink-900 sm:text-6xl"
             />
           </h2>
           <p className="mt-8 max-w-md text-[1.05rem] leading-[1.7] text-ink-500">{contactForm.lede}</p>
@@ -55,7 +55,7 @@ export function ContactForm() {
         ) : (
           <form
             onSubmit={onSubmit}
-            className="rounded-[1.75rem] border border-wine-700/12 bg-cream-50 p-6 shadow-[0_28px_60px_-36px_rgba(42,10,18,0.45)] sm:p-8"
+            className="rounded-[1.35rem] border border-wine-700/12 bg-cream-50 p-4 shadow-[0_28px_60px_-36px_rgba(42,10,18,0.45)] sm:rounded-[1.75rem] sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">
@@ -118,7 +118,7 @@ export function ContactForm() {
             <button
               type="submit"
               data-cursor="expand"
-              className="mt-6 inline-flex items-center gap-3 rounded-full bg-wine-800 px-7 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em] text-cream-50 transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:bg-gold-400 hover:text-wine-950"
+              className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-full bg-wine-800 px-7 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em] text-cream-50 transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] hover:bg-gold-400 hover:text-wine-950 sm:w-auto"
             >
               {contactForm.submit}
               <svg viewBox="0 0 16 16" className="h-3.5 w-3.5" aria-hidden>

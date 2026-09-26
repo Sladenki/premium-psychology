@@ -91,16 +91,16 @@ function LogoMarquee() {
 
 export function About() {
   return (
-    <section id="practice" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
+    <section id="practice" className="relative overflow-hidden bg-cream-50 py-16 sm:py-28 lg:py-40">
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div>
           <RevealLines
             lines={about.title}
-            className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
+            className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
           />
           <FadeIn className="mt-8 max-w-3xl" delay={0.1}>
-            <p className="font-sans text-[1.45rem] leading-[1.35] text-wine-800 italic sm:text-[1.7rem]">
+            <p className="font-sans text-[1.25rem] leading-[1.35] text-wine-800 italic sm:text-[1.7rem]">
               {about.lede}
             </p>
             <p className="mt-4 max-w-2xl font-sans text-[1.15rem] leading-snug text-wine-800/80 italic sm:text-[1.3rem]">
@@ -110,7 +110,7 @@ export function About() {
           <FadeIn className="mt-10" delay={0.05}>
             <ul className="grid max-w-4xl gap-x-12 gap-y-3 border-l border-gold-400/70 pl-6 sm:grid-cols-2">
               {about.quotes.map((quote) => (
-                <li key={quote} className="font-sans text-[1.25rem] leading-snug text-ink-900 italic sm:text-[1.4rem]">
+                <li key={quote} className="font-sans text-[1.12rem] leading-snug text-ink-900 italic sm:text-[1.4rem]">
                   «{quote}»
                 </li>
               ))}
@@ -118,9 +118,9 @@ export function About() {
           </FadeIn>
         </div>
 
-        <div className="mt-16 rounded-[1.75rem] bg-cream-100 px-6 py-8 sm:mt-20 sm:px-10 sm:py-10">
+        <div className="mt-12 rounded-[1.35rem] bg-cream-100 px-5 py-7 sm:mt-20 sm:rounded-[1.75rem] sm:px-10 sm:py-10">
           <div className="grid gap-8 lg:grid-cols-[18rem_1fr] lg:gap-12">
-            <h3 className="font-serif text-[2rem] leading-tight text-ink-900 sm:text-[2.25rem]">
+            <h3 className="font-serif text-[1.75rem] leading-tight text-ink-900 sm:text-[2.25rem]">
               {about.behindLabel}
             </h3>
             <div>
@@ -154,7 +154,7 @@ export function About() {
               {about.yearsLabel}
             </p>
             <div className="mt-10 border-t border-gold-400/60 pt-8">
-              <p className="font-serif text-[2rem] leading-tight tracking-[-0.02em] text-ink-900 sm:text-[2.4rem]">
+              <p className="font-serif text-[1.75rem] leading-tight tracking-[-0.02em] text-ink-900 sm:text-[2.4rem]">
                 {about.founder.name}
               </p>
               <p className="mt-3 text-[12px] font-medium uppercase tracking-[0.14em] text-wine-700">
@@ -171,7 +171,7 @@ export function About() {
             src={portraitQuiet}
             sizes="(min-width: 1024px) 440px, 80vw"
             objectPosition="center 16%"
-            className="mx-auto w-full max-w-sm lg:mx-0 lg:max-w-[28rem] lg:justify-self-end"
+            className="mx-auto w-full max-w-[18rem] sm:max-w-sm lg:mx-0 lg:max-w-[28rem] lg:justify-self-end"
           />
         </div>
       </div>
@@ -180,7 +180,7 @@ export function About() {
 
       <div className="relative z-10 mt-16 border-y border-wine-700/10 bg-cream-100/80 py-14 sm:mt-20 sm:py-16">
         <FadeIn className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <p className="font-serif text-[1.85rem] leading-[1.2] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
+          <p className="font-serif text-[1.45rem] leading-[1.25] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
             {about.partnersLead}
           </p>
           <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-900 sm:text-[1.08rem]">

@@ -5,9 +5,9 @@ export function Footer() {
 
   return (
     <footer className="bg-wine-800 text-cream-50">
-      <div className="mx-auto grid w-full max-w-[1120px] gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.3fr_0.8fr_1.1fr_0.9fr] lg:gap-10 lg:py-24">
-        <div>
-          <p className="font-serif text-[2rem] leading-tight tracking-[-0.02em] sm:text-[2.35rem]">
+      <div className="mx-auto grid w-full max-w-[1120px] gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-x-10 sm:gap-y-12 sm:px-8 sm:py-20 lg:grid-cols-[1.3fr_0.8fr_1.1fr_0.9fr] lg:py-24">
+        <div className="sm:col-span-2 lg:col-span-1">
+          <p className="font-serif text-[1.85rem] leading-tight tracking-[-0.02em] sm:text-[2.35rem]">
             Олитто и партнёры
           </p>
           <p className="mt-4 max-w-[16rem] text-[1.05rem] leading-snug text-cream-100/80">

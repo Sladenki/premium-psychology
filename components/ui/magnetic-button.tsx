@@ -38,11 +38,15 @@ export function MagneticButton({
   children,
   variant = "line",
   className,
+  compact = false,
+  wide = false,
 }: {
   href: string;
   children: React.ReactNode;
   variant?: Variant;
   className?: string;
+  compact?: boolean;
+  wide?: boolean;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
@@ -86,7 +90,7 @@ export function MagneticButton({
     : `circle(0% at ${origin.x}% ${origin.y}%)`;
 
   return (
-    <div ref={wrapRef} className={cn("inline-flex", className)}>
+    <div ref={wrapRef} className={cn(wide ? "flex w-full" : "inline-flex", className)}>
       <motion.a
         ref={buttonRef}
         href={href}
@@ -107,7 +111,11 @@ export function MagneticButton({
           y.set(0);
         }}
         className={cn(
-          "relative inline-flex items-center justify-center overflow-hidden rounded-full px-8 py-3.5 text-[13px] font-medium uppercase tracking-[0.08em]",
+          "relative inline-flex items-center justify-center overflow-hidden rounded-full font-medium uppercase",
+          compact
+            ? "px-4 py-2.5 text-[11px] tracking-[0.06em]"
+            : "px-8 py-3.5 text-[13px] tracking-[0.08em]",
+          wide && "w-full",
           styles.button,
         )}
       >

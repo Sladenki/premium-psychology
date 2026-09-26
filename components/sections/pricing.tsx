@@ -45,7 +45,7 @@ function PlanCard({ plan }: { plan: Plan }) {
     <motion.div variants={cardVariants(Boolean(plan.recommended))} className="h-full min-w-0">
       <article
         className={cn(
-          "relative flex h-full min-w-0 flex-col rounded-[1.75rem] p-8 sm:p-9",
+          "relative flex h-full min-w-0 flex-col rounded-[1.35rem] p-5 sm:rounded-[1.75rem] sm:p-9",
           plan.recommended
             ? "bg-wine-800 text-cream-50 shadow-[0_24px_50px_-28px_rgba(42,10,18,0.65)] lg:-translate-y-3"
             : "border border-wine-700/12 bg-cream-50",
@@ -53,13 +53,13 @@ function PlanCard({ plan }: { plan: Plan }) {
       >
         <h3
           className={cn(
-            "min-w-0 font-sans text-[1.65rem] leading-snug font-medium break-words sm:min-h-[4.4rem] sm:text-[1.85rem]",
+            "min-w-0 font-sans text-[1.45rem] leading-snug font-medium break-words sm:min-h-[4.4rem] sm:text-[1.85rem]",
             plan.recommended ? "text-cream-50" : "text-ink-900",
           )}
         >
           {plan.name}
         </h3>
-        <p className="mt-5 font-serif text-[1.7rem] leading-[1.15] break-words text-gold-400 sm:min-h-[4.4rem] sm:text-[1.95rem]">
+        <p className="mt-4 font-serif text-[1.45rem] leading-[1.2] break-words text-gold-400 sm:mt-5 sm:min-h-[4.4rem] sm:text-[1.95rem]">
           {plan.lead}
         </p>
         <p
@@ -93,7 +93,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           ))}
         </ul>
         <div className="mt-auto pt-10">
-          <MagneticButton href="#contact" variant="gold">
+          <MagneticButton href="#contact" variant="gold" wide>
             {pricing.cta}
           </MagneticButton>
         </div>
@@ -109,14 +109,14 @@ export function Pricing() {
   const plans = pricing.plans[mode];
 
   return (
-    <section id="formats" className="relative overflow-hidden bg-cream-50 py-24 sm:py-32 lg:py-40">
+    <section id="formats" className="relative overflow-hidden bg-cream-50 py-16 sm:py-28 lg:py-40">
       <Atmosphere variant="formats" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={pricing.title}
-          className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
+          className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
-        <p className="mt-6 max-w-xl font-sans text-[1.35rem] leading-snug text-wine-800 italic sm:text-[1.6rem]">
+        <p className="mt-5 max-w-xl font-sans text-[1.15rem] leading-snug text-wine-800 italic sm:mt-6 sm:text-[1.6rem]">
           {pricing.lede}
         </p>
 

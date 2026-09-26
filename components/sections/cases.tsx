@@ -12,7 +12,7 @@ function CaseDetail({ item }: { item: CaseStudy }) {
   return (
     <article className="rounded-[1.75rem] border border-wine-700/10 bg-cream-50 px-5 py-7 sm:px-8 sm:py-9">
       <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">{item.name}</p>
-      <h3 className="mt-5 font-sans text-[1.45rem] leading-snug font-medium text-ink-900 sm:text-[1.75rem]">
+      <h3 className="mt-5 font-sans text-[1.28rem] leading-snug font-medium text-ink-900 sm:text-[1.75rem]">
         {item.title}
       </h3>
       <ol className="mt-8">
@@ -55,19 +55,19 @@ export function Cases() {
   const active = cases.items.find((item) => item.id === activeId) ?? cases.items[0];
 
   return (
-    <section id="cases" className="relative overflow-hidden bg-cream-100 py-24 sm:py-32 lg:py-40">
+    <section id="cases" className="relative overflow-hidden bg-cream-100 py-16 sm:py-28 lg:py-40">
       <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={cases.title}
-          className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
+          className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
         <div className="mt-12 grid items-start gap-8 lg:mt-16 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">
           <div
             role="tablist"
             aria-label="Кейсы"
-            className="flex gap-3 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0"
+            className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:flex-col lg:overflow-visible lg:pb-0"
           >
             {cases.items.map((item) => {
               const selected = item.id === active.id;
@@ -82,7 +82,7 @@ export function Cases() {
                   data-cursor="expand"
                   onClick={() => setActiveId(item.id)}
                   className={cn(
-                    "shrink-0 rounded-2xl px-4 py-3 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:w-full lg:px-5 lg:py-4",
+                    "shrink-0 snap-start rounded-2xl px-4 py-3 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:w-full lg:px-5 lg:py-4",
                     selected ? "bg-wine-800 text-cream-50" : "bg-cream-50 text-ink-900 hover:bg-cream-50/80",
                   )}
                 >

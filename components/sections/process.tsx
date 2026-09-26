@@ -4,12 +4,12 @@ import { FadeIn, RevealLines } from "@/components/ui/reveal";
 
 export function Process() {
   return (
-    <section id="method" className="relative overflow-hidden bg-cream-100 py-24 sm:py-32 lg:py-40">
+    <section id="method" className="relative overflow-hidden bg-cream-100 py-16 sm:py-28 lg:py-40">
       <Atmosphere variant="method" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={process.title}
-          className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
+          className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
         <ol className="mt-14 grid items-stretch gap-5 sm:mt-16 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4 lg:gap-6">
@@ -18,7 +18,7 @@ export function Process() {
               key={step.number}
               as="li"
               delay={index * 0.06}
-              className="flex h-full flex-col rounded-[1.6rem] border border-wine-700/15 bg-cream-50 px-7 pt-8 pb-9 shadow-[0_28px_50px_-36px_rgba(42,10,18,0.55)]"
+              className="flex h-full flex-col rounded-[1.35rem] border border-wine-700/15 bg-cream-50 px-5 pt-6 pb-7 shadow-[0_28px_50px_-36px_rgba(42,10,18,0.55)] sm:rounded-[1.6rem] sm:px-7 sm:pt-8 sm:pb-9"
             >
               <span className="font-serif text-[2.6rem] leading-none lining-nums text-gold-400">
                 {step.number}

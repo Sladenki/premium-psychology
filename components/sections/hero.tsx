@@ -51,28 +51,28 @@ export function Hero() {
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-wine-950 text-cream-50">
       <Curtain />
       <HeroField />
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1120px] flex-col justify-center px-5 pt-32 pb-16 sm:px-8 lg:pt-28 lg:pb-20">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1120px] flex-col justify-center px-5 pt-28 pb-14 sm:px-8 sm:pt-32 sm:pb-16 lg:pt-28 lg:pb-20">
         <h1>
           <RevealLines
             as="span"
             play="load"
             delay={0.46}
             lines={[hero.title[0]]}
-            className="font-serif text-[2.35rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3rem] lg:text-[3.5rem] xl:text-[4.15rem]"
+            className="font-serif text-[2.05rem] leading-[1.05] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3rem] lg:text-[3.5rem] xl:text-[4.15rem]"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.56}
             lines={[hero.title[1]]}
-            className="mt-1 font-sans text-[1.85rem] leading-[1.08] text-cream-100 italic sm:text-[2.35rem] lg:text-[2.75rem] xl:text-[3.15rem]"
+            className="mt-1 font-sans text-[1.55rem] leading-[1.1] text-cream-100 italic sm:text-[2.35rem] lg:text-[2.75rem] xl:text-[3.15rem]"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.66}
             lines={hero.title[2].split(" ")}
-            className="font-serif text-[2.35rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3rem] lg:hidden"
+            className="font-serif text-[2.05rem] leading-[1.05] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3rem] lg:hidden"
           />
           <RevealLines
             as="span"
@@ -88,7 +88,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.05, ease: EXPO }}
         >
-          <p className="font-sans text-[1.35rem] leading-snug text-cream-50 italic sm:text-[1.7rem] lg:text-[1.9rem]">
+          <p className="font-sans text-[1.2rem] leading-snug text-cream-50 italic sm:text-[1.7rem] lg:text-[1.9rem]">
             {hero.subtitle}
           </p>
           <p className="mt-5 max-w-xl text-[1.02rem] leading-[1.7] text-cream-50/75 sm:text-[1.08rem]">
