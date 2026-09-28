@@ -2,7 +2,7 @@ import { process } from "@/lib/content";
 
 export function Process() {
   return (
-    <section id="method" className="bg-cream-100 py-16 sm:py-24 lg:py-28">
+    <section id="method" className="bg-cream-100 pt-16 pb-10 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-14">
       <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <h2 className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.03em] text-ink-900 sm:text-[3.25rem]">
           {process.title[0]}

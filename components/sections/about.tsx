@@ -8,7 +8,7 @@ import { about } from "@/lib/content";
 import { cn } from "@/lib/cn";
 import { EXPO } from "@/lib/easing";
 import { Atmosphere } from "@/components/ui/atmosphere";
-import { FadeIn, RevealLines } from "@/components/ui/reveal";
+import { FadeIn } from "@/components/ui/reveal";
 import type { StaticImageData } from "next/image";
 
 function YearCounter() {
@@ -91,19 +91,15 @@ function LogoMarquee() {
 
 export function About() {
   return (
-    <section id="practice" className="relative overflow-hidden bg-cream-50 py-16 sm:py-28 lg:py-40">
+    <section id="practice" className="relative overflow-hidden bg-cream-50 pt-16 pb-0 sm:pt-28 lg:pt-40">
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div>
-          <RevealLines
-            lines={about.title}
-            className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl"
-          />
+          <h2 className="max-w-[16ch] font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl">
+            {about.lede}
+          </h2>
           <FadeIn className="mt-8 max-w-3xl" delay={0.1}>
-            <p className="font-sans text-[1.25rem] leading-[1.35] text-wine-800 italic sm:text-[1.7rem]">
-              {about.lede}
-            </p>
-            <p className="mt-4 max-w-2xl font-sans text-[1.15rem] leading-snug text-wine-800/80 italic sm:text-[1.3rem]">
+            <p className="max-w-2xl font-sans text-[1.15rem] leading-snug text-wine-800/80 italic sm:text-[1.3rem]">
               {about.ledeMore}
             </p>
           </FadeIn>
@@ -141,44 +137,48 @@ export function About() {
           </div>
         </div>
 
-        <div className="mt-16 grid items-start gap-12 sm:mt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <div>
-            <p
-              className="font-serif text-[clamp(4.75rem,10vw,7.25rem)] leading-[0.82] text-gold-400"
-              aria-label={`${about.years}+ ${about.yearsLabel}`}
-            >
-              <YearCounter />
-              <span aria-hidden>+</span>
-            </p>
-            <p className="mt-5 max-w-sm font-serif text-[1.75rem] leading-snug text-ink-900 sm:text-[2rem]">
-              {about.yearsLabel}
-            </p>
-            <div className="mt-10 border-t border-gold-400/60 pt-8">
-              <p className="font-serif text-[1.75rem] leading-tight tracking-[-0.02em] text-ink-900 sm:text-[2.4rem]">
-                {about.founder.name}
+        <div className="mt-16 grid items-start gap-12 sm:mt-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+          <div className="max-w-[36rem]">
+            <div>
+              <p
+                className="font-serif text-[clamp(5rem,11vw,7.5rem)] leading-[0.85] text-gold-400"
+                aria-label={`${about.years}+ ${about.yearsLabel}`}
+              >
+                <YearCounter />
+                <span aria-hidden>+</span>
               </p>
-              <p className="mt-3 text-[12px] font-medium uppercase tracking-[0.14em] text-wine-700">
+              <p className="mt-4 max-w-[12ch] font-serif text-[1.65rem] leading-[1.15] text-ink-900 sm:text-[1.9rem]">
+                {about.yearsLabel}
+              </p>
+            </div>
+
+            <div className="mt-14">
+              <p className="text-[1.05rem] font-medium leading-snug tracking-[0.06em] text-wine-700 uppercase sm:text-[1.2rem]">
                 {about.founder.role}
               </p>
-              <div className="mt-6 max-w-xl space-y-4 text-[1.02rem] leading-[1.75] text-ink-900 sm:text-[1.0625rem]">
+              <h3 className="mt-3 font-serif text-[1.55rem] leading-[1.1] tracking-[-0.02em] text-ink-900 sm:text-[1.75rem]">
+                {about.founder.name}
+              </h3>
+              <div className="mt-7 space-y-4 text-[1.0625rem] leading-[1.55] text-ink-900">
                 {about.founder.bio.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
               </div>
             </div>
           </div>
+
           <Portrait
             src={portraitQuiet}
-            sizes="(min-width: 1024px) 440px, 80vw"
+            sizes="(min-width: 1024px) 460px, 80vw"
             objectPosition="center 16%"
-            className="mx-auto w-full max-w-[18rem] sm:max-w-sm lg:mx-0 lg:max-w-[28rem] lg:justify-self-end"
+            className="mx-auto w-full max-w-[18rem] sm:max-w-sm lg:mx-0 lg:mt-6 lg:max-w-[27rem] lg:justify-self-end"
           />
         </div>
       </div>
 
       <LogoMarquee />
 
-      <div className="relative z-10 mt-16 border-y border-wine-700/10 bg-cream-100/80 py-14 sm:mt-20 sm:py-16">
+      <div className="relative z-10 my-10 border-y border-wine-700/10 bg-cream-100/80 py-10 sm:my-12 sm:py-12">
         <FadeIn className="mx-auto max-w-3xl px-5 text-center sm:px-8">
           <p className="font-serif text-[1.45rem] leading-[1.25] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
             {about.partnersLead}

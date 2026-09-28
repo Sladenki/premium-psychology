@@ -24,7 +24,7 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-cream-100 py-16 sm:py-28 lg:py-40">
+    <section id="contact" className="relative overflow-hidden bg-cream-100 pt-16 pb-10 sm:pt-28 sm:pb-14 lg:pt-32 lg:pb-16">
       <Atmosphere variant="contact" />
       <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_32rem]">
         <div>

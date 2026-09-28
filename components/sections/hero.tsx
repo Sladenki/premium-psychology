@@ -59,7 +59,7 @@ export function Hero() {
             play="load"
             delay={0.46}
             lines={[hero.aside]}
-            className="font-sans text-[1.45rem] leading-[1.15] text-cream-100 italic sm:text-[1.85rem] lg:text-[2.15rem]"
+            className="-translate-y-2 font-sans text-[1.45rem] leading-[1.15] text-gold-400 italic sm:-translate-y-3 sm:text-[1.85rem] lg:text-[2.15rem]"
           />
           <RevealLines
             as="span"

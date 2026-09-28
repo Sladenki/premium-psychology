@@ -109,16 +109,13 @@ export function Pricing() {
   const plans = pricing.plans[mode];
 
   return (
-    <section id="formats" className="relative overflow-hidden bg-cream-50 py-16 sm:py-28 lg:py-40">
+    <section id="formats" className="relative overflow-hidden bg-cream-50 pt-10 pb-16 sm:pt-14 sm:pb-28 lg:pt-16 lg:pb-40">
       <Atmosphere variant="formats" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={pricing.title}
           className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
-        <p className="mt-5 max-w-xl font-sans text-[1.15rem] leading-snug text-wine-800 italic sm:mt-6 sm:text-[1.6rem]">
-          {pricing.lede}
-        </p>
 
         <div ref={gridRef}>
         {/*

@@ -50,8 +50,10 @@ export function Header() {
     >
       <div className="relative z-50 mx-auto flex w-full max-w-[1120px] items-center justify-between gap-3 px-5 py-3 sm:gap-6 sm:px-8 sm:py-4">
         <a href="#top" className="min-w-0 leading-none" data-cursor="expand" onClick={() => setOpen(false)}>
-          <span className="block font-serif text-[1.65rem] tracking-[-0.02em] sm:text-[2rem]">Олитто</span>
-          <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.14em] opacity-80 sm:mt-1 sm:text-[11px]">
+          <span className="block font-serif text-[1.65rem] leading-none tracking-[-0.02em] sm:text-[2rem]">
+            Олитто
+          </span>
+          <span className="mt-1 block font-serif text-[1.65rem] leading-none tracking-[-0.02em] sm:text-[2rem]">
             и партнёры
           </span>
         </a>
