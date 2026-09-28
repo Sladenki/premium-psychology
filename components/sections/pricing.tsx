@@ -70,14 +70,16 @@ function PlanCard({ plan }: { plan: Plan }) {
         >
           {plan.summary}
         </p>
-        <p
-          className={cn(
-            "mt-4 text-[1.02rem] leading-[1.65]",
-            plan.recommended ? "text-cream-100/80" : "text-ink-900",
-          )}
-        >
-          {plan.description}
-        </p>
+        {plan.description ? (
+          <p
+            className={cn(
+              "mt-4 text-[1.02rem] leading-[1.65]",
+              plan.recommended ? "text-cream-100/80" : "text-ink-900",
+            )}
+          >
+            {plan.description}
+          </p>
+        ) : null}
         <ul className={cn("mt-8 space-y-3 border-t pt-6", plan.recommended ? "border-cream-50/15" : "border-wine-700/10")}>
           {plan.features.map((feature) => (
             <li
