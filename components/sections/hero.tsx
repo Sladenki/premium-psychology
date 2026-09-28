@@ -53,10 +53,7 @@ export function Hero() {
       <Curtain />
       <HeroField />
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1120px] flex-col justify-center px-5 pt-28 pb-14 sm:px-8 sm:pt-32 sm:pb-16 lg:pt-28 lg:pb-20">
-        <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-gold-400">
-          {hero.kicker}
-        </p>
-        <h1 className="mt-6">
+        <h1>
           <RevealLines
             as="span"
             play="load"
