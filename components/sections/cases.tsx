@@ -55,7 +55,7 @@ export function Cases() {
   const active = cases.items.find((item) => item.id === activeId) ?? cases.items[0];
 
   return (
-    <section id="cases" className="relative overflow-hidden bg-cream-100 py-16 sm:py-28 lg:py-40">
+    <section id="cases" className="relative overflow-hidden bg-cream-100 pt-10 pb-12 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
       <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
