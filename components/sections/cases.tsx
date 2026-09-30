@@ -1,9 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { cases, type CaseStudy } from "@/lib/content";
-import { EXPO } from "@/lib/easing";
 import { cn } from "@/lib/cn";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
@@ -67,7 +66,7 @@ export function Cases() {
           <div
             role="tablist"
             aria-label="Кейсы"
-            className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:flex-col lg:overflow-visible lg:pb-0"
+            className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:flex-col lg:overflow-visible lg:pb-0"
           >
             {cases.items.map((item) => {
               const selected = item.id === active.id;
@@ -109,19 +108,25 @@ export function Cases() {
             role="tabpanel"
             id="case-panel"
             aria-labelledby={`case-tab-${active.id}`}
-            className="min-w-0"
+            className="grid min-w-0 [overflow-anchor:none]"
           >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={active.id}
-                initial={reduce ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                transition={{ duration: reduce ? 0 : 0.35, ease: EXPO }}
-              >
-                <CaseDetail item={active} />
-              </motion.div>
-            </AnimatePresence>
+            {cases.items.map((item) => {
+              const selected = item.id === active.id;
+              return (
+                <div
+                  key={item.id}
+                  className={cn(
+                    "col-start-1 row-start-1",
+                    reduce ? "" : "transition-opacity duration-300 ease-[cubic-bezier(0.65,0,0.35,1)]",
+                    selected ? "relative z-10 opacity-100" : "pointer-events-none z-0 opacity-0",
+                  )}
+                  aria-hidden={selected ? undefined : true}
+                  inert={selected ? undefined : true}
+                >
+                  <CaseDetail item={item} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

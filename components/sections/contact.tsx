@@ -6,7 +6,7 @@ import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
 
 const fieldClass =
-  "w-full rounded-2xl border border-wine-700/15 bg-cream-100 px-4 py-3.5 text-[1.0625rem] text-ink-900 outline-none transition-colors duration-300 placeholder:text-ink-500/60 focus:border-gold-400";
+  "w-full rounded-2xl border border-wine-700/15 bg-cream-50 px-4 py-3.5 text-[1.0625rem] text-ink-900 outline-none transition-colors duration-300 placeholder:text-ink-500/60 focus:border-gold-400";
 
 const labelClass = "mb-2 block text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700";
 
@@ -24,7 +24,7 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-cream-100 pt-10 pb-10 sm:pt-16 sm:pb-14 lg:pt-20 lg:pb-16">
+    <section id="contact" className="relative overflow-hidden bg-cream-50 pt-10 pb-10 sm:pt-16 sm:pb-14 lg:pt-20 lg:pb-16">
       <Atmosphere variant="contact" />
       <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_32rem]">
         <div>
@@ -55,7 +55,7 @@ export function ContactForm() {
         ) : (
           <form
             onSubmit={onSubmit}
-            className="rounded-[1.35rem] border border-wine-700/12 bg-cream-50 p-4 shadow-[0_28px_60px_-36px_rgba(42,10,18,0.45)] sm:rounded-[1.75rem] sm:p-8"
+            className="rounded-[1.35rem] border border-wine-700/12 bg-cream-100 p-4 shadow-[0_28px_60px_-36px_rgba(42,10,18,0.45)] sm:rounded-[1.75rem] sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">

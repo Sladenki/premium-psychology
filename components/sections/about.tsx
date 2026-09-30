@@ -91,7 +91,7 @@ function LogoMarquee() {
 
 export function About() {
   return (
-    <section id="practice" className="relative overflow-hidden bg-cream-50 pt-16 pb-0 sm:pt-28 lg:pt-40">
+    <section id="practice" className="relative overflow-hidden bg-cream-50 pt-10 pb-0 sm:pt-16 lg:pt-20">
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div>
