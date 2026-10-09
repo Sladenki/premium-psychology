@@ -72,10 +72,10 @@ export function Header() {
     >
       <div className="relative z-50 mx-auto flex w-full max-w-[1120px] items-center justify-between gap-3 px-5 py-3 sm:gap-6 sm:px-8 sm:py-4">
         <a href="#top" className="min-w-0 leading-none" data-cursor="expand" onClick={() => setOpen(false)}>
-          <span className="block font-serif text-[1.65rem] leading-none tracking-[-0.02em] sm:text-[2rem]">
+          <span className="block font-serif text-[1.65rem] leading-none tracking-[0.02em] uppercase sm:text-[2rem]">
             Олитто
           </span>
-          <span className="mt-1 block font-serif text-[1.65rem] leading-none tracking-[-0.02em] sm:text-[2rem]">
+          <span className="mt-1.5 block text-[0.58rem] font-medium uppercase leading-none tracking-[0.22em] sm:text-[0.65rem]">
             и партнёры
           </span>
         </a>

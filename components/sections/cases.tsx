@@ -15,23 +15,43 @@ function CaseDetail({ item }: { item: CaseStudy }) {
         {item.title}
       </h3>
       <ol className="mt-8">
-        {item.points.map((point, index) => (
-          <li
-            key={point.label}
-            className="grid gap-2 border-t border-wine-700/10 py-5 sm:grid-cols-[11.5rem_minmax(0,1fr)] sm:items-start sm:gap-6 sm:py-6"
-          >
-            <div className="flex items-baseline gap-3">
-              <span className="font-serif text-[1.15rem] leading-none text-gold-400 lining-nums">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">
-                {point.label}
-              </span>
-            </div>
-            <p className="min-w-0 text-[1.02rem] leading-[1.65] text-ink-900">{point.text}</p>
-          </li>
-        ))}
+        {item.points.map((point, index) => {
+          const paragraphs = Array.isArray(point.text) ? point.text : [point.text];
+          return (
+            <li
+              key={point.label}
+              className="grid gap-2 border-t border-wine-700/10 py-5 sm:grid-cols-[11.5rem_minmax(0,1fr)] sm:items-start sm:gap-6 sm:py-6"
+            >
+              <div className="flex items-baseline gap-3">
+                <span className="font-serif text-[1.15rem] leading-none text-gold-400 lining-nums">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">
+                  {point.label}
+                </span>
+              </div>
+              <div className="min-w-0 space-y-3 text-[1.02rem] leading-[1.65] text-ink-900">
+                {paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </li>
+          );
+        })}
       </ol>
+      {item.project ? (
+        <p className="mt-2 border-t border-gold-400/60 pt-6 text-[1.02rem] leading-[1.65] text-ink-900">
+          Один из проектов:{" "}
+          <a
+            href={item.project.href}
+            target="_blank"
+            rel="noreferrer"
+            className="font-medium text-wine-800 underline decoration-gold-400/70 underline-offset-4 transition-colors hover:text-gold-400"
+          >
+            {item.project.label}
+          </a>
+        </p>
+      ) : null}
       {item.quote ? (
         <figure className="mt-2 border-t border-gold-400/60 pt-6">
           <blockquote className="font-sans text-[1.2rem] leading-snug text-ink-900 italic sm:text-[1.35rem]">
@@ -54,7 +74,7 @@ export function Cases() {
   const active = cases.items.find((item) => item.id === activeId) ?? cases.items[0];
 
   return (
-    <section id="cases" className="relative overflow-hidden bg-cream-100 pt-10 pb-12 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
+    <section id="cases" className="relative overflow-x-clip bg-cream-100 pt-10 pb-6 sm:pt-16 sm:pb-10 lg:pt-20 lg:pb-12">
       <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
@@ -62,11 +82,11 @@ export function Cases() {
           className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
-        <div className="mt-12 grid items-start gap-8 lg:mt-16 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">
+        <div className="mt-10 grid items-start gap-8 lg:mt-12 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">
           <div
             role="tablist"
             aria-label="Кейсы"
-            className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:flex-col lg:overflow-visible lg:pb-0"
+            className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:sticky lg:top-28 lg:flex-col lg:overflow-visible lg:pb-0"
           >
             {cases.items.map((item) => {
               const selected = item.id === active.id;
@@ -108,7 +128,7 @@ export function Cases() {
             role="tabpanel"
             id="case-panel"
             aria-labelledby={`case-tab-${active.id}`}
-            className="grid min-w-0 [overflow-anchor:none]"
+            className="relative min-w-0 [overflow-anchor:none]"
           >
             {cases.items.map((item) => {
               const selected = item.id === active.id;
@@ -116,9 +136,10 @@ export function Cases() {
                 <div
                   key={item.id}
                   className={cn(
-                    "col-start-1 row-start-1",
                     reduce ? "" : "transition-opacity duration-300 ease-[cubic-bezier(0.65,0,0.35,1)]",
-                    selected ? "relative z-10 opacity-100" : "pointer-events-none z-0 opacity-0",
+                    selected
+                      ? "relative z-10 opacity-100"
+                      : "pointer-events-none absolute inset-x-0 top-0 z-0 opacity-0",
                   )}
                   aria-hidden={selected ? undefined : true}
                   inert={selected ? undefined : true}

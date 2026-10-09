@@ -95,7 +95,7 @@ export function About() {
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div>
-          <h2 className="max-w-[16ch] font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl lg:text-7xl">
+          <h2 className="max-w-[22ch] font-serif text-[1.7rem] leading-[1.08] tracking-[-0.02em] text-ink-900 sm:text-[2.85rem] lg:text-[3.35rem]">
             {about.lede}
           </h2>
           <FadeIn className="mt-8 max-w-3xl" delay={0.1}>
