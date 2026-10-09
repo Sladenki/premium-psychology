@@ -89,7 +89,7 @@ function LogoMarquee() {
   );
 }
 
-export function About() {
+export function AboutSituations() {
   return (
     <section id="practice" className="relative overflow-hidden bg-cream-50 pt-10 pb-0 sm:pt-16 lg:pt-20">
       <Atmosphere variant="practice" />
@@ -113,8 +113,16 @@ export function About() {
             </ul>
           </FadeIn>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-12 rounded-[1.35rem] bg-cream-100 px-5 py-7 sm:mt-20 sm:rounded-[1.75rem] sm:px-10 sm:py-10">
+export function AboutSystem() {
+  return (
+    <section className="relative overflow-hidden bg-cream-50 pt-12 pb-0 sm:pt-20">
+      <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+        <div className="rounded-[1.35rem] bg-cream-100 px-5 py-7 sm:rounded-[1.75rem] sm:px-10 sm:py-10">
           <div className="grid gap-8 lg:grid-cols-[18rem_1fr] lg:gap-12">
             <h3 className="font-serif text-[1.75rem] leading-tight text-ink-900 sm:text-[2.25rem]">
               {about.behindLabel}
@@ -136,8 +144,16 @@ export function About() {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-16 grid items-start gap-12 sm:mt-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+export function AboutFounder() {
+  return (
+    <section className="relative overflow-hidden bg-cream-50 pt-16 pb-0 sm:pt-20">
+      <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
           <div className="max-w-[36rem]">
             <div>
               <p
@@ -175,7 +191,13 @@ export function About() {
           />
         </div>
       </div>
+    </section>
+  );
+}
 
+export function AboutPartners() {
+  return (
+    <section className="relative overflow-hidden bg-cream-50 pb-0">
       <LogoMarquee />
 
       <div className="relative z-10 my-10 border-y border-wine-700/10 bg-cream-100/80 py-10 sm:my-12 sm:py-12">
@@ -192,5 +214,17 @@ export function About() {
         </FadeIn>
       </div>
     </section>
+  );
+}
+
+/** @deprecated Prefer the split About* sections; kept for compatibility. */
+export function About() {
+  return (
+    <>
+      <AboutSituations />
+      <AboutSystem />
+      <AboutFounder />
+      <AboutPartners />
+    </>
   );
 }

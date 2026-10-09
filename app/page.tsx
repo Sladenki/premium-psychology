@@ -1,5 +1,10 @@
 import { Header } from "@/components/layout/header";
-import { About } from "@/components/sections/about";
+import {
+  AboutFounder,
+  AboutPartners,
+  AboutSituations,
+  AboutSystem,
+} from "@/components/sections/about";
 import { Cases } from "@/components/sections/cases";
 import { ContactForm } from "@/components/sections/contact";
 import { Faq } from "@/components/sections/faq";
@@ -14,12 +19,15 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Process />
+        <AboutSituations />
+        <AboutSystem />
         <Pricing />
+        <AboutFounder />
+        <Process />
+        <AboutPartners />
         <Cases />
-        <ContactForm />
         <Faq />
+        <ContactForm />
       </main>
       <Footer />
     </>
