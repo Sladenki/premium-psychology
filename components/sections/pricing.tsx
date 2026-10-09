@@ -47,7 +47,7 @@ function PlanCard({ plan }: { plan: Plan }) {
         className={cn(
           "relative flex h-full min-w-0 flex-col rounded-[1.25rem] p-4 sm:rounded-[1.5rem] sm:p-6",
           plan.recommended
-            ? "bg-wine-800 text-cream-50 shadow-[0_24px_50px_-28px_rgba(42,10,18,0.65)]"
+            ? "bg-wine-800 text-cream-50"
             : "border border-wine-700/12 bg-cream-50",
         )}
       >

@@ -4,7 +4,6 @@ import { useReducedMotion } from "framer-motion";
 import { useState } from "react";
 import { cases, type CaseStudy } from "@/lib/content";
 import { cn } from "@/lib/cn";
-import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
 
 function CaseDetail({ item }: { item: CaseStudy }) {
@@ -74,8 +73,7 @@ export function Cases() {
   const active = cases.items.find((item) => item.id === activeId) ?? cases.items[0];
 
   return (
-    <section id="cases" className="relative overflow-x-clip bg-cream-100 pt-10 pb-6 sm:pt-16 sm:pb-10 lg:pt-20 lg:pb-12">
-      <Atmosphere variant="cases" />
+    <section id="cases" className="relative overflow-x-clip bg-cream-50 pt-2 pb-6 sm:pt-4 sm:pb-10 lg:pb-12">
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={cases.title}

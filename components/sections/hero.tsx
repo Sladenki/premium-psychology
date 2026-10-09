@@ -85,9 +85,14 @@ export function Hero() {
           <p className="max-w-lg text-[1.02rem] leading-[1.7] text-cream-50/80 sm:text-[1.12rem]">
             {hero.lead}
           </p>
-          <MagneticButton href="#contact" variant="gold" className="mt-8">
-            {hero.screenCta}
-          </MagneticButton>
+          <div className="mt-8">
+            <MagneticButton href="#contact" variant="gold" magnetic={false}>
+              {hero.screenCta}
+            </MagneticButton>
+            <p className="mt-3 text-[12px] leading-snug tracking-[0.02em] text-cream-50/55 sm:text-[13px]">
+              {hero.ctaNote}
+            </p>
+          </div>
         </motion.div>
       </div>
       <div className="absolute inset-x-0 bottom-0 z-10 h-px bg-gold-400/50" />

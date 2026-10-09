@@ -40,6 +40,7 @@ export function MagneticButton({
   className,
   compact = false,
   wide = false,
+  magnetic = false,
 }: {
   href: string;
   children: React.ReactNode;
@@ -47,11 +48,13 @@ export function MagneticButton({
   className?: string;
   compact?: boolean;
   wide?: boolean;
+  magnetic?: boolean;
 }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const fine = useFinePointer();
   const reduce = useReducedMotion();
+  const magneticEnabled = magnetic && fine && !reduce;
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15, mass: 0.4 });
@@ -61,7 +64,7 @@ export function MagneticButton({
   const styles = variants[variant];
 
   useEffect(() => {
-    if (!fine || reduce) return;
+    if (!magneticEnabled) return;
 
     const onMove = (event: PointerEvent) => {
       const el = wrapRef.current;
@@ -83,7 +86,7 @@ export function MagneticButton({
 
     window.addEventListener("pointermove", onMove);
     return () => window.removeEventListener("pointermove", onMove);
-  }, [fine, reduce, x, y]);
+  }, [magneticEnabled, x, y]);
 
   const clip = hovered
     ? `circle(150% at ${origin.x}% ${origin.y}%)`
@@ -95,7 +98,7 @@ export function MagneticButton({
         ref={buttonRef}
         href={href}
         data-cursor="expand"
-        style={fine && !reduce ? { x: springX, y: springY } : undefined}
+        style={magneticEnabled ? { x: springX, y: springY } : undefined}
         onPointerEnter={(event) => {
           const rect = buttonRef.current?.getBoundingClientRect();
           if (!rect) return;

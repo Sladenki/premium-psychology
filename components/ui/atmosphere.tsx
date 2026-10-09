@@ -53,7 +53,6 @@ export function Atmosphere({ variant = "practice" }: { variant?: Variant }) {
 
       {variant === "formats" ? (
         <>
-          <div className="absolute -bottom-48 left-[18%] h-[42rem] w-[42rem] rounded-full bg-[radial-gradient(circle,rgba(201,162,39,0.12),transparent_68%)]" />
           <svg
             className="absolute -top-16 -right-16 h-[34rem] w-[34rem] text-wine-700/25"
             viewBox="0 0 200 200"

@@ -30,7 +30,7 @@ function YearCounter() {
   const shown = reduce ? about.years : value;
 
   return (
-    <span ref={ref} className="font-serif leading-none text-gold-400">
+    <span ref={ref} className="tabular-nums">
       {shown}
     </span>
   );
@@ -54,8 +54,9 @@ function Portrait({
           src={src}
           alt="Полина Олитто"
           fill
+          quality={90}
           sizes={sizes}
-          className="origin-[center_18%] scale-[1.34] object-cover"
+          className="object-cover"
           style={{ objectPosition }}
         />
       </div>
@@ -68,7 +69,7 @@ function LogoMarquee() {
 
   return (
     <div
-      className="marquee relative z-10 mt-16 w-full overflow-hidden border-y border-wine-700/15 py-7 sm:mt-20 sm:py-8"
+      className="marquee relative z-10 mt-6 w-full overflow-hidden border-y border-wine-700/15 py-4 sm:mt-8"
       aria-label="Направления работы"
     >
       <div className="marquee-track flex w-max">
@@ -95,7 +96,7 @@ export function AboutSituations() {
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div>
-          <h2 className="max-w-[22ch] font-serif text-[1.7rem] leading-[1.08] tracking-[-0.02em] text-ink-900 sm:text-[2.85rem] lg:text-[3.35rem]">
+          <h2 className="-translate-y-3 max-w-[22ch] font-serif text-[1.7rem] leading-[1.08] tracking-[-0.02em] text-ink-900 sm:-translate-y-4 sm:text-[2.85rem] lg:text-[3.35rem]">
             {about.lede}
           </h2>
           <FadeIn className="mt-8 max-w-3xl" delay={0.1}>
@@ -151,44 +152,39 @@ export function AboutSystem() {
 
 export function AboutFounder() {
   return (
-    <section className="relative overflow-hidden bg-cream-50 pt-16 pb-0 sm:pt-20">
+    <section className="relative overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-          <div className="max-w-[36rem]">
-            <div>
-              <p
-                className="font-serif text-[clamp(5rem,11vw,7.5rem)] leading-[0.85] text-gold-400"
-                aria-label={`${about.years}+ ${about.yearsLabel}`}
-              >
-                <YearCounter />
-                <span aria-hidden>+</span>
-              </p>
-              <p className="mt-4 max-w-[12ch] font-serif text-[1.65rem] leading-[1.15] text-ink-900 sm:text-[1.9rem]">
-                {about.yearsLabel}
-              </p>
-            </div>
-
-            <div className="mt-14">
-              <p className="text-[1.05rem] font-medium leading-snug tracking-[0.06em] text-wine-700 uppercase sm:text-[1.2rem]">
-                {about.founder.role}
-              </p>
-              <h3 className="mt-3 font-serif text-[1.55rem] leading-[1.1] tracking-[-0.02em] text-ink-900 sm:text-[1.75rem]">
-                {about.founder.name}
-              </h3>
-              <div className="mt-7 space-y-4 text-[1.0625rem] leading-[1.55] text-ink-900">
-                {about.founder.bio.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-          </div>
-
+        <div className="grid items-start gap-8 sm:grid-cols-[15.5rem_minmax(0,1fr)] sm:gap-10 lg:gap-14">
           <Portrait
             src={portraitQuiet}
-            sizes="(min-width: 1024px) 460px, 80vw"
-            objectPosition="center 16%"
-            className="mx-auto w-full max-w-[18rem] sm:max-w-sm lg:mx-0 lg:mt-6 lg:max-w-[27rem] lg:justify-self-end"
+            sizes="(min-width: 640px) 248px, 216px"
+            objectPosition="center 22%"
+            className="mx-auto w-[13.5rem] sm:mx-0 sm:w-full"
           />
+
+          <div className="min-w-0 max-w-[40rem]">
+            <h3 className="font-serif text-[1.75rem] leading-none tracking-[-0.02em] text-ink-900 sm:text-[2rem]">
+              {about.founder.name}
+            </h3>
+            <p
+              className="mt-3 text-[1.02rem] leading-snug text-ink-500"
+              aria-label={`${about.founder.role}. ${about.years}+ ${about.yearsLabel}`}
+            >
+              {about.founder.role}
+              <span className="mx-2 text-gold-400" aria-hidden>
+                ·
+              </span>
+              <YearCounter />+ {about.yearsLabel}
+            </p>
+            <div className="mt-5 space-y-3 text-[1.02rem] leading-[1.55] text-ink-900">
+              {about.founder.bio.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <p className="text-ink-500">
+                {about.founder.experienceLabel}: {about.founder.companies.join(" · ")}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -200,9 +196,9 @@ export function AboutPartners() {
     <section className="relative overflow-hidden bg-cream-50 pb-0">
       <LogoMarquee />
 
-      <div className="relative z-10 my-10 border-y border-wine-700/10 bg-cream-100/80 py-10 sm:my-12 sm:py-12">
-        <FadeIn className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <p className="font-serif text-[1.45rem] leading-[1.25] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
+      <div className="relative z-10 mx-auto mt-6 mb-4 w-full max-w-[1120px] px-5 sm:mt-8 sm:mb-6 sm:px-8">
+        <FadeIn className="rounded-[1.35rem] bg-cream-100 px-5 py-7 text-center sm:rounded-[1.75rem] sm:px-10 sm:py-10">
+          <p className="mx-auto max-w-3xl font-serif text-[1.45rem] leading-[1.25] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
             {about.partnersLead}
           </p>
           <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-900 sm:text-[1.08rem]">

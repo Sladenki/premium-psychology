@@ -2,12 +2,12 @@ import { process } from "@/lib/content";
 
 export function Process() {
   return (
-    <section id="method" className="bg-cream-100 pt-8 pb-10 sm:pt-12 sm:pb-12 lg:pt-14 lg:pb-14">
+    <section id="method" className="bg-cream-100 pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-10">
       <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <h2 className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.03em] text-ink-900 sm:text-[3.25rem]">
           {process.title[0]}
         </h2>
-        <ol className="mt-14 grid gap-x-16 gap-y-12 sm:mt-16 lg:grid-cols-2 lg:gap-y-16">
+        <ol className="mt-6 grid gap-x-16 gap-y-12 sm:mt-8 lg:grid-cols-2 lg:gap-y-16">
           {process.steps.map((step) => (
             <li key={step.number} className="max-w-[34rem]">
               <span className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">

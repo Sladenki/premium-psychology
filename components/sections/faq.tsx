@@ -19,7 +19,7 @@ function FaqItem({ question, answer }: { question: string; answer: string[] }) {
         aria-expanded={open}
         data-cursor="expand"
         onClick={() => setOpen((value) => !value)}
-        className="flex w-full items-start justify-between gap-4 py-5 text-left font-serif text-[1.2rem] leading-snug text-ink-900 sm:gap-6 sm:py-7 sm:text-[1.65rem]"
+        className="flex w-full items-start justify-between gap-4 py-4 text-left font-serif text-[1.2rem] leading-snug text-ink-900 sm:gap-6 sm:py-5 sm:text-[1.65rem]"
       >
         <span>{question}</span>
         <motion.span
@@ -39,9 +39,9 @@ function FaqItem({ question, answer }: { question: string; answer: string[] }) {
         )}
       >
         <div className="overflow-hidden" inert={open ? undefined : true}>
-          <div className="max-w-3xl space-y-4 pb-7">
+          <div className="max-w-3xl space-y-3 pb-5">
             {answer.map((paragraph) => (
-              <p key={paragraph} className="text-[1.0625rem] leading-[1.7] text-ink-500">
+              <p key={paragraph} className="text-[1.0625rem] leading-[1.65] text-ink-500">
                 {paragraph}
               </p>
             ))}
@@ -54,7 +54,7 @@ function FaqItem({ question, answer }: { question: string; answer: string[] }) {
 
 export function Faq() {
   return (
-    <section id="faq" className="relative overflow-hidden bg-cream-100 pt-10 pb-16 sm:pt-14 sm:pb-28 lg:pt-16 lg:pb-40">
+    <section id="faq" className="relative overflow-hidden bg-cream-100 pt-8 pb-10 sm:pt-10 sm:pb-14 lg:pt-12 lg:pb-16">
       <Atmosphere variant="faq" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
@@ -62,7 +62,7 @@ export function Faq() {
           className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
-        <div className="mt-12 border-b border-wine-700/15 [overflow-anchor:none] sm:mt-16">
+        <div className="mt-8 border-b border-wine-700/15 [overflow-anchor:none] sm:mt-10">
           {faq.items.map((item) => (
             <FaqItem key={item.question} question={item.question} answer={item.answer} />
           ))}
