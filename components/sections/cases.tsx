@@ -88,7 +88,7 @@ export function Cases() {
   }, [activeId, reduce]);
 
   return (
-    <section id="cases" className="relative overflow-x-clip bg-cream-50 pt-2 pb-6 sm:pt-4 sm:pb-10 lg:pb-12">
+    <section id="cases" className="relative overflow-x-clip bg-cream-50 pt-6 pb-6 sm:pt-10 sm:pb-10 lg:pt-12 lg:pb-12">
       <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div className="grid items-start gap-8 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">

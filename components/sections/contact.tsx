@@ -107,7 +107,7 @@ export function ContactForm() {
           <form
             ref={formRef}
             onSubmit={onSubmit}
-            className="relative rounded-[1.35rem] border border-wine-700/12 bg-cream-100 p-4 shadow-[0_28px_60px_-36px_rgba(42,10,18,0.45)] sm:rounded-[1.75rem] sm:p-8"
+            className="relative rounded-[1.35rem] border border-wine-700/12 bg-cream-100 p-4 sm:rounded-[1.75rem] sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">

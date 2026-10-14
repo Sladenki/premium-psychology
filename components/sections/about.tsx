@@ -74,7 +74,7 @@ function LogoMarquee() {
 
   return (
     <div
-      className="marquee relative z-10 mt-6 w-full overflow-hidden border-y border-wine-700/15 py-4 sm:mt-8"
+      className="marquee relative z-10 mt-8 w-full overflow-hidden border-y border-wine-700/15 py-6 sm:mt-10 sm:py-7"
       aria-label="Направления работы"
     >
       <div className="marquee-track flex w-max">
@@ -208,20 +208,56 @@ export function AboutFounder() {
   );
 }
 
+function CheckIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
+      <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M7.5 12.2 10.4 15l6.1-6.5"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function AboutPartners() {
   return (
     <section className="relative overflow-hidden bg-cream-50 pb-0">
       <LogoMarquee />
 
-      <div className="relative z-10 mx-auto mt-6 mb-4 w-full max-w-[1120px] px-5 sm:mt-8 sm:mb-6 sm:px-8">
-        <FadeIn className="rounded-[1.35rem] bg-cream-100 px-5 py-7 text-center sm:rounded-[1.75rem] sm:px-10 sm:py-10">
-          <p className="mx-auto max-w-3xl font-serif text-[1.45rem] leading-[1.25] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
-            {about.partnersLead}
-          </p>
-          <p className="mx-auto mt-6 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-900 sm:text-[1.08rem]">
-            {about.partnersBody}
-          </p>
-          <p className="mx-auto mt-5 max-w-xl font-sans text-[1.2rem] leading-snug text-wine-800 italic sm:text-[1.35rem]">
+      <div className="relative z-10 mx-auto mt-8 mb-4 w-full max-w-[1120px] px-5 sm:mt-10 sm:mb-6 sm:px-8">
+        <FadeIn className="rounded-[1.75rem] bg-cream-100 px-6 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="font-serif text-[1.7rem] leading-[1.15] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
+              {about.partnersLead}
+            </h2>
+            <p className="mt-4 text-[1.05rem] leading-[1.7] text-ink-500 sm:mt-5 sm:text-[1.08rem]">
+              {about.partnersBody}
+            </p>
+          </div>
+
+          <div className="mx-auto mt-8 max-w-xl border-t border-wine-700/10 pt-8 sm:mt-10 sm:pt-10">
+            <ul className="space-y-6 text-left sm:space-y-7">
+              {about.partnersPoints.map((point) => (
+                <li key={point.title} className="flex gap-3.5 sm:gap-4">
+                  <CheckIcon className="mt-0.5 h-6 w-6 shrink-0 text-wine-700 sm:h-7 sm:w-7" />
+                  <div className="min-w-0">
+                    <p className="text-[1.05rem] font-semibold leading-snug text-ink-900 sm:text-[1.1rem]">
+                      {point.title}
+                    </p>
+                    <p className="mt-1 text-[0.95rem] leading-snug text-ink-500 sm:text-[1rem]">
+                      {point.text}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <p className="mx-auto mt-8 max-w-md text-center font-sans text-[1.1rem] leading-snug text-wine-800 italic sm:mt-10 sm:text-[1.2rem]">
             {about.partnersClose}
           </p>
         </FadeIn>
