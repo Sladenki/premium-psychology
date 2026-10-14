@@ -48,7 +48,12 @@ function Portrait({
   className?: string;
 }) {
   return (
-    <figure className={cn("overflow-hidden rounded-[2rem]", className)}>
+    <figure
+      className={cn(
+        "overflow-hidden rounded-[1.75rem] border border-wine-700/10",
+        className,
+      )}
+    >
       <div className="relative aspect-[4/5]">
         <Image
           src={src}
@@ -150,72 +155,53 @@ export function AboutSystem() {
   );
 }
 
-function FocusMark({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className={className}
-      aria-hidden
-    >
-      <path d="M4 8V4h4" />
-      <path d="M20 8V4h-4" />
-      <path d="M4 16v4h4" />
-      <path d="M20 16v4h-4" />
-    </svg>
-  );
-}
-
 export function AboutFounder() {
   return (
     <section className="relative overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
       <Atmosphere variant="founder" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-14 xl:gap-20">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-14 xl:gap-20">
           <div className="min-w-0">
             <div>
               <p
-                className="font-sans text-[4.5rem] font-bold leading-none tracking-[-0.03em] text-gold-400 sm:text-[5.5rem]"
+                className="font-sans text-[4.25rem] font-bold leading-none tracking-[-0.03em] text-gold-400 sm:text-[5.25rem]"
                 aria-label={`${about.years}+ ${about.yearsLabel}`}
               >
                 <YearCounter />+
               </p>
-              <div className="mt-2 flex items-center gap-3">
-                <p className="font-sans text-[1.05rem] font-semibold leading-snug text-ink-900 sm:text-[1.15rem]">
-                  {about.yearsLabel}
-                </p>
-                <FocusMark className="h-6 w-6 shrink-0 text-ink-900/65 sm:h-7 sm:w-7" />
-              </div>
+              <p className="mt-2.5 font-sans text-[1.02rem] font-medium leading-snug text-ink-900 sm:text-[1.1rem]">
+                {about.yearsLabel}
+              </p>
             </div>
 
-            <div className="mt-6 h-px w-full bg-gold-400 sm:mt-8" aria-hidden />
+            <div className="mt-7 h-px max-w-[8rem] bg-gold-400 sm:mt-9" aria-hidden />
 
-            <h3 className="mt-6 font-sans text-[1.85rem] font-bold leading-none tracking-[-0.02em] text-ink-900 sm:mt-8 sm:text-[2.35rem]">
+            <h3 className="mt-7 font-serif text-[2rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:mt-9 sm:text-[2.55rem]">
               {about.founder.name}
             </h3>
-            <p className="mt-3 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-wine-700 sm:text-[0.82rem]">
+            <p className="mt-2.5 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-wine-700 sm:text-[0.78rem]">
               {about.founder.role}
             </p>
 
-            <div className="mt-6 max-w-[36rem] space-y-4 text-[1.02rem] leading-[1.65] text-ink-900 sm:mt-8 sm:text-[1.05rem]">
+            <div className="mt-6 max-w-[34rem] space-y-4 text-[1rem] leading-[1.7] text-ink-500 sm:mt-7 sm:text-[1.05rem]">
               {about.founder.bio.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
 
-            <p className="mt-5 max-w-[36rem] text-[0.875rem] font-semibold leading-snug text-ink-500 sm:mt-6 sm:text-[0.9rem]">
-              {about.founder.experienceLabel}: {about.founder.companies.join(" · ")}
+            <p className="mt-7 max-w-[34rem] border-t border-wine-700/10 pt-5 text-[0.8125rem] font-semibold leading-snug text-ink-500 sm:mt-8 sm:text-[0.875rem]">
+              <span className="text-ink-900">{about.founder.experienceLabel}:</span>{" "}
+              {about.founder.companies.join(" · ")}
             </p>
           </div>
 
-          <Portrait
-            src={portraitQuiet}
-            sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
-            objectPosition="center 18%"
-            className="mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mx-0 lg:max-w-none"
-          />
+          <FadeIn className="mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mx-0 lg:max-w-none" delay={0.08}>
+            <Portrait
+              src={portraitQuiet}
+              sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
+              objectPosition="center 22%"
+            />
+          </FadeIn>
         </div>
       </div>
     </section>
