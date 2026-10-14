@@ -3,7 +3,7 @@
 import { animate, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import portraitQuiet from "../../photos/ph2.jpg";
+import portraitQuiet from "../../photos/ph3.jpg";
 import { about } from "@/lib/content";
 import { cn } from "@/lib/cn";
 import { EXPO } from "@/lib/easing";
@@ -48,11 +48,11 @@ function Portrait({
   className?: string;
 }) {
   return (
-    <figure className={cn("overflow-hidden rounded-[1.75rem]", className)}>
+    <figure className={cn("overflow-hidden rounded-[2rem]", className)}>
       <div className="relative aspect-[4/5]">
         <Image
           src={src}
-          alt="Полина Олитто"
+          alt="Олитто Полина"
           fill
           quality={90}
           sizes={sizes}
@@ -150,41 +150,72 @@ export function AboutSystem() {
   );
 }
 
+function FocusMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className={className}
+      aria-hidden
+    >
+      <path d="M4 8V4h4" />
+      <path d="M20 8V4h-4" />
+      <path d="M4 16v4h4" />
+      <path d="M20 16v4h-4" />
+    </svg>
+  );
+}
+
 export function AboutFounder() {
   return (
     <section className="relative overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
+      <Atmosphere variant="founder" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-start gap-8 sm:grid-cols-[15.5rem_minmax(0,1fr)] sm:gap-10 lg:gap-14">
-          <Portrait
-            src={portraitQuiet}
-            sizes="(min-width: 640px) 248px, 216px"
-            objectPosition="center 22%"
-            className="mx-auto w-[13.5rem] sm:mx-0 sm:w-full"
-          />
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-14 xl:gap-20">
+          <div className="min-w-0">
+            <div>
+              <p
+                className="font-sans text-[4.5rem] font-bold leading-none tracking-[-0.03em] text-gold-400 sm:text-[5.5rem]"
+                aria-label={`${about.years}+ ${about.yearsLabel}`}
+              >
+                <YearCounter />+
+              </p>
+              <div className="mt-2 flex items-center gap-3">
+                <p className="font-sans text-[1.05rem] font-semibold leading-snug text-ink-900 sm:text-[1.15rem]">
+                  {about.yearsLabel}
+                </p>
+                <FocusMark className="h-6 w-6 shrink-0 text-ink-900/65 sm:h-7 sm:w-7" />
+              </div>
+            </div>
 
-          <div className="min-w-0 max-w-[40rem]">
-            <h3 className="font-serif text-[1.75rem] leading-none tracking-[-0.02em] text-ink-900 sm:text-[2rem]">
+            <div className="mt-6 h-px w-full bg-gold-400 sm:mt-8" aria-hidden />
+
+            <h3 className="mt-6 font-sans text-[1.85rem] font-bold leading-none tracking-[-0.02em] text-ink-900 sm:mt-8 sm:text-[2.35rem]">
               {about.founder.name}
             </h3>
-            <p
-              className="mt-3 text-[1.02rem] leading-snug text-ink-500"
-              aria-label={`${about.founder.role}. ${about.years}+ ${about.yearsLabel}`}
-            >
+            <p className="mt-3 font-sans text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-wine-700 sm:text-[0.82rem]">
               {about.founder.role}
-              <span className="mx-2 text-gold-400" aria-hidden>
-                ·
-              </span>
-              <YearCounter />+ {about.yearsLabel}
             </p>
-            <div className="mt-5 space-y-3 text-[1.02rem] leading-[1.55] text-ink-900">
+
+            <div className="mt-6 max-w-[36rem] space-y-4 text-[1.02rem] leading-[1.65] text-ink-900 sm:mt-8 sm:text-[1.05rem]">
               {about.founder.bio.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
-              <p className="text-ink-500">
-                {about.founder.experienceLabel}: {about.founder.companies.join(" · ")}
-              </p>
             </div>
+
+            <p className="mt-5 max-w-[36rem] text-[0.875rem] font-semibold leading-snug text-ink-500 sm:mt-6 sm:text-[0.9rem]">
+              {about.founder.experienceLabel}: {about.founder.companies.join(" · ")}
+            </p>
           </div>
+
+          <Portrait
+            src={portraitQuiet}
+            sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
+            objectPosition="center 18%"
+            className="mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mx-0 lg:max-w-none"
+          />
         </div>
       </div>
     </section>

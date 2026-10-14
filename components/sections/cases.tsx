@@ -1,9 +1,10 @@
 "use client";
 
 import { useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cases, type CaseStudy } from "@/lib/content";
 import { cn } from "@/lib/cn";
+import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
 
 function CaseDetail({ item }: { item: CaseStudy }) {
@@ -70,63 +71,84 @@ function CaseDetail({ item }: { item: CaseStudy }) {
 export function Cases() {
   const [activeId, setActiveId] = useState(cases.items[0].id);
   const reduce = useReducedMotion();
+  const panelRef = useRef<HTMLDivElement>(null);
+  const didMount = useRef(false);
   const active = cases.items.find((item) => item.id === activeId) ?? cases.items[0];
+
+  useEffect(() => {
+    if (!didMount.current) {
+      didMount.current = true;
+      return;
+    }
+
+    panelRef.current?.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+      block: "start",
+    });
+  }, [activeId, reduce]);
 
   return (
     <section id="cases" className="relative overflow-x-clip bg-cream-50 pt-2 pb-6 sm:pt-4 sm:pb-10 lg:pb-12">
+      <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <RevealLines
-          lines={cases.title}
-          className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
-        />
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">
+          <div className="lg:sticky lg:top-28">
+            <RevealLines
+              lines={cases.title}
+              className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
+            />
 
-        <div className="mt-10 grid items-start gap-8 lg:mt-12 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">
-          <div
-            role="tablist"
-            aria-label="Кейсы"
-            className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:sticky lg:top-28 lg:flex-col lg:overflow-visible lg:pb-0"
-          >
-            {cases.items.map((item) => {
-              const selected = item.id === active.id;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  id={`case-tab-${item.id}`}
-                  aria-selected={selected}
-                  aria-controls="case-panel"
-                  data-cursor="expand"
-                  onClick={() => setActiveId(item.id)}
-                  className={cn(
-                    "shrink-0 snap-start rounded-2xl px-4 py-3 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:w-full lg:px-5 lg:py-4",
-                    selected ? "bg-wine-800 text-cream-50" : "bg-cream-50 text-ink-900 hover:bg-cream-50/80",
-                  )}
-                >
-                  <span className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">
-                    {item.index}
-                  </span>
-                  <span className="mt-2 block max-w-[16rem] text-[0.95rem] leading-snug font-medium lg:max-w-none">
-                    {item.name}
-                  </span>
-                  <span
+            <div
+              role="tablist"
+              aria-label="Кейсы"
+              className="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:mt-10 lg:flex-col lg:overflow-visible lg:pb-0"
+            >
+              {cases.items.map((item) => {
+                const selected = item.id === active.id;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="tab"
+                    id={`case-tab-${item.id}`}
+                    aria-selected={selected}
+                    aria-controls="case-panel"
+                    data-cursor="expand"
+                    onClick={() => {
+                      if (item.id === activeId) return;
+                      setActiveId(item.id);
+                    }}
                     className={cn(
-                      "mt-1 hidden text-[0.9rem] leading-snug lg:line-clamp-2 lg:block",
-                      selected ? "text-cream-100/75" : "text-ink-500",
+                      "shrink-0 snap-start rounded-2xl px-4 py-3 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:w-full lg:px-5 lg:py-4",
+                      selected ? "bg-wine-800 text-cream-50" : "bg-cream-50 text-ink-900 hover:bg-cream-50/80",
                     )}
                   >
-                    {item.title}
-                  </span>
-                </button>
-              );
-            })}
+                    <span className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">
+                      {item.index}
+                    </span>
+                    <span className="mt-2 block max-w-[16rem] text-[0.95rem] leading-snug font-medium lg:max-w-none">
+                      {item.name}
+                    </span>
+                    <span
+                      className={cn(
+                        "mt-1 hidden text-[0.9rem] leading-snug lg:line-clamp-2 lg:block",
+                        selected ? "text-cream-100/75" : "text-ink-500",
+                      )}
+                    >
+                      {item.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div
+            ref={panelRef}
             role="tabpanel"
             id="case-panel"
             aria-labelledby={`case-tab-${active.id}`}
-            className="relative min-w-0 [overflow-anchor:none]"
+            className="relative min-w-0 scroll-mt-28 [overflow-anchor:none]"
           >
             {cases.items.map((item) => {
               const selected = item.id === active.id;

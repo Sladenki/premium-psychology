@@ -1,9 +1,11 @@
 import { process } from "@/lib/content";
+import { Atmosphere } from "@/components/ui/atmosphere";
 
 export function Process() {
   return (
-    <section id="method" className="bg-cream-100 pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-10">
-      <div className="mx-auto w-full max-w-[1120px] px-5 sm:px-8">
+    <section id="method" className="relative overflow-hidden bg-cream-100 pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-8 lg:pb-10">
+      <Atmosphere variant="method" />
+      <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <h2 className="font-serif text-[2.5rem] leading-[1.05] tracking-[-0.03em] text-ink-900 sm:text-[3.25rem]">
           {process.title[0]}
         </h2>
