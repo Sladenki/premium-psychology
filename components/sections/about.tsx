@@ -30,7 +30,7 @@ function YearCounter() {
   const shown = reduce ? about.years : value;
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <span ref={ref} className="font-serif leading-none text-gold-400">
       {shown}
     </span>
   );
@@ -164,12 +164,13 @@ export function AboutFounder() {
           <div className="min-w-0">
             <div>
               <p
-                className="font-sans text-[4.25rem] font-bold leading-none tracking-[-0.03em] text-gold-400 sm:text-[5.25rem]"
+                className="font-serif text-[clamp(4.25rem,9vw,6.25rem)] leading-[0.85] text-gold-400"
                 aria-label={`${about.years}+ ${about.yearsLabel}`}
               >
-                <YearCounter />+
+                <YearCounter />
+                <span aria-hidden>+</span>
               </p>
-              <p className="mt-2.5 font-sans text-[1.02rem] font-medium leading-snug text-ink-900 sm:text-[1.1rem]">
+              <p className="mt-4 max-w-[12ch] font-serif text-[1.45rem] leading-[1.15] text-ink-900 sm:text-[1.65rem]">
                 {about.yearsLabel}
               </p>
             </div>
