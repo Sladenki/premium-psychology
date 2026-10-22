@@ -230,35 +230,23 @@ export function AboutPartners() {
       <LogoMarquee />
 
       <div className="relative z-10 mx-auto mt-8 mb-4 w-full max-w-[1120px] px-5 sm:mt-10 sm:mb-6 sm:px-8">
-        <FadeIn className="rounded-[1.75rem] bg-cream-100 px-6 py-10 sm:px-12 sm:py-14 lg:px-16 lg:py-16">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-serif text-[1.7rem] leading-[1.15] tracking-[-0.02em] text-ink-900 sm:text-[2.35rem]">
-              {about.partnersLead}
-            </h2>
-            <p className="mt-4 text-[1.05rem] leading-[1.7] text-ink-500 sm:mt-5 sm:text-[1.08rem]">
-              {about.partnersBody}
-            </p>
-          </div>
+        <FadeIn className="rounded-[1.75rem] bg-cream-100 px-6 py-9 sm:px-10 sm:py-11 lg:px-14 lg:py-12">
+          <h2 className="mx-auto max-w-[18ch] text-center font-serif text-[1.7rem] leading-[1.15] tracking-[-0.02em] text-ink-900 sm:text-[2.2rem]">
+            {about.partnersLead}
+          </h2>
 
-          <div className="mx-auto mt-8 max-w-xl border-t border-wine-700/10 pt-8 sm:mt-10 sm:pt-10">
-            <ul className="space-y-6 text-left sm:space-y-7">
-              {about.partnersPoints.map((point) => (
-                <li key={point.title} className="flex gap-3.5 sm:gap-4">
-                  <CheckIcon className="mt-0.5 h-6 w-6 shrink-0 text-wine-700 sm:h-7 sm:w-7" />
-                  <div className="min-w-0">
-                    <p className="text-[1.05rem] font-semibold leading-snug text-ink-900 sm:text-[1.1rem]">
-                      {point.title}
-                    </p>
-                    <p className="mt-1 text-[0.95rem] leading-snug text-ink-500 sm:text-[1rem]">
-                      {point.text}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="mx-auto mt-8 grid max-w-4xl gap-5 sm:mt-9 sm:grid-cols-3 sm:gap-8">
+            {about.partnersPoints.map((point) => (
+              <li key={point.title} className="flex gap-3 sm:flex-col sm:gap-3 sm:text-center">
+                <CheckIcon className="mt-0.5 h-6 w-6 shrink-0 text-wine-700 sm:mx-auto" />
+                <p className="text-[1.02rem] font-medium leading-snug text-ink-900 sm:text-[1.05rem]">
+                  {point.title}
+                </p>
+              </li>
+            ))}
+          </ul>
 
-          <p className="mx-auto mt-8 max-w-md text-center font-sans text-[1.1rem] leading-snug text-wine-800 italic sm:mt-10 sm:text-[1.2rem]">
+          <p className="mx-auto mt-8 max-w-md text-center font-sans text-[1.08rem] leading-snug text-wine-800 italic sm:mt-9 sm:text-[1.15rem]">
             {about.partnersClose}
           </p>
         </FadeIn>
