@@ -4,6 +4,7 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { hero, nav } from "@/lib/content";
 import { cn } from "@/lib/cn";
+import { LogoMark } from "@/components/ui/logo-mark";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function Header() {
@@ -71,12 +72,21 @@ export function Header() {
       )}
     >
       <div className="relative z-50 mx-auto flex w-full max-w-[1120px] items-center justify-between gap-3 px-5 py-3 sm:gap-6 sm:px-8 sm:py-4">
-        <a href="#top" className="min-w-0 leading-none" data-cursor="expand" onClick={() => setOpen(false)}>
-          <span className="block font-serif text-[1.65rem] leading-none tracking-[0.02em] uppercase sm:text-[2rem]">
-            Олитто
-          </span>
-          <span className="mt-1.5 block text-[0.58rem] font-medium uppercase leading-none tracking-[0.22em] sm:text-[0.65rem]">
-            и партнёры
+        <a
+          href="#top"
+          className="flex min-w-0 items-center gap-2.5 leading-none sm:gap-3"
+          data-cursor="expand"
+          onClick={() => setOpen(false)}
+          aria-label="Олитто и партнёры"
+        >
+          <LogoMark inverted={light} className="h-9 w-[3.35rem] sm:h-11 sm:w-[4.1rem]" />
+          <span className="hidden min-w-0 sm:block">
+            <span className="block font-serif text-[1.35rem] leading-none tracking-[0.02em] uppercase lg:text-[1.55rem]">
+              Олитто
+            </span>
+            <span className="mt-1.5 block text-[0.58rem] font-medium uppercase leading-none tracking-[0.22em] lg:text-[0.65rem]">
+              и партнёры
+            </span>
           </span>
         </a>
         <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-8">
