@@ -39,6 +39,10 @@ export function Process() {
             </FadeIn>
           ))}
         </ol>
+
+        <p className="mt-10 max-w-3xl text-[0.95rem] leading-[1.6] text-ink-500 sm:mt-12 sm:text-[1rem]">
+          {process.note}
+        </p>
       </div>
     </section>
   );

@@ -51,6 +51,16 @@ function PlanCard({ plan }: { plan: Plan }) {
             : "border border-wine-700/12 bg-cream-50",
         )}
       >
+        {plan.badge ? (
+          <p
+            className={cn(
+              "mb-3 text-[11px] font-semibold uppercase tracking-[0.14em]",
+              plan.recommended ? "text-gold-400" : "text-wine-700",
+            )}
+          >
+            {plan.badge}
+          </p>
+        ) : null}
         <h3
           className={cn(
             "min-w-0 font-sans text-[1.25rem] leading-snug font-medium break-words sm:text-[1.55rem]",

@@ -209,44 +209,20 @@ export function AboutFounder() {
   );
 }
 
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" className={className} aria-hidden>
-      <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.5" />
-      <path
-        d="M7.5 12.2 10.4 15l6.1-6.5"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 export function AboutPartners() {
   return (
     <section className="relative overflow-hidden bg-cream-50 pb-0">
       <LogoMarquee />
 
       <div className="relative z-10 mx-auto mt-8 mb-4 w-full max-w-[1120px] px-5 sm:mt-10 sm:mb-6 sm:px-8">
-        <FadeIn className="rounded-[1.75rem] bg-cream-100 px-6 py-9 sm:px-10 sm:py-11 lg:px-14 lg:py-12">
-          <h2 className="mx-auto max-w-[18ch] text-center font-serif text-[1.7rem] leading-[1.15] tracking-[-0.02em] text-ink-900 sm:text-[2.2rem]">
+        <FadeIn className="rounded-[1.75rem] bg-cream-100 px-6 py-9 text-center sm:px-10 sm:py-11 lg:px-14 lg:py-12">
+          <h2 className="mx-auto max-w-[18ch] font-serif text-[1.7rem] leading-[1.15] tracking-[-0.02em] text-ink-900 sm:text-[2.2rem]">
             {about.partnersLead}
           </h2>
-
-          <ul className="mx-auto mt-8 grid max-w-4xl gap-5 sm:mt-9 sm:grid-cols-3 sm:gap-8">
-            {about.partnersPoints.map((point) => (
-              <li key={point.title} className="flex gap-3 sm:flex-col sm:gap-3 sm:text-center">
-                <CheckIcon className="mt-0.5 h-6 w-6 shrink-0 text-wine-700 sm:mx-auto" />
-                <p className="text-[1.02rem] font-medium leading-snug text-ink-900 sm:text-[1.05rem]">
-                  {point.title}
-                </p>
-              </li>
-            ))}
-          </ul>
-
-          <p className="mx-auto mt-8 max-w-md text-center font-sans text-[1.08rem] leading-snug text-wine-800 italic sm:mt-9 sm:text-[1.15rem]">
+          <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-500 sm:text-[1.08rem]">
+            {about.partnersBody}
+          </p>
+          <p className="mx-auto mt-5 max-w-xl font-sans text-[1.15rem] leading-snug text-wine-800 italic sm:text-[1.25rem]">
             {about.partnersClose}
           </p>
         </FadeIn>
