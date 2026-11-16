@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import heroPortrait from "../../photos/ph2.jpg";
 import { hero } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
 import { RevealLines } from "@/components/ui/reveal";
@@ -11,7 +13,11 @@ function Curtain() {
   const reduce = useReducedMotion();
   const [done, setDone] = useState(false);
 
-  if (reduce || done) return null;
+  useEffect(() => {
+    if (reduce) setDone(true);
+  }, [reduce]);
+
+  if (done) return null;
 
   return (
     <motion.div
@@ -52,28 +58,29 @@ export function Hero() {
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-wine-950 text-cream-50">
       <Curtain />
       <HeroField />
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1120px] flex-col justify-center px-5 pt-28 pb-14 sm:px-8 sm:pt-32 sm:pb-16 lg:pt-28 lg:pb-20">
+      <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1120px] items-center gap-6 px-5 pt-24 pb-12 sm:px-8 sm:pt-28 lg:grid-cols-[minmax(0,36rem)_minmax(13rem,22rem)] lg:gap-10 lg:pt-28 lg:pb-16">
+        <div className="order-2 min-w-0 lg:order-1">
         <h1>
           <RevealLines
             as="span"
             play="load"
             delay={0.46}
             lines={[hero.aside]}
-            className="-translate-y-2 font-sans text-[1.45rem] leading-[1.15] text-cream-50 italic sm:-translate-y-3 sm:text-[1.85rem] lg:text-[2.15rem]"
+            className="-translate-y-2 font-sans text-[1.35rem] leading-[1.15] text-cream-50 italic sm:-translate-y-3 sm:text-[1.85rem] lg:text-[2rem]"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.58}
             lines={[hero.title[0]]}
-            className="mt-3 font-serif text-[2.35rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3.4rem] lg:text-[4.25rem] xl:text-[4.75rem]"
+            className="mt-3 font-serif text-[2.05rem] leading-[1.02] font-medium tracking-[-0.035em] text-cream-50 sm:text-[3.15rem] lg:text-[3.55rem] xl:text-[3.9rem]"
           />
           <RevealLines
             as="span"
             play="load"
             delay={0.7}
             lines={[hero.title[1]]}
-            className="font-sans text-[2.15rem] leading-[1.08] text-cream-100 italic sm:text-[3.05rem] lg:text-[3.7rem] xl:text-[4.15rem]"
+            className="font-sans text-[1.9rem] leading-[1.08] text-cream-100 italic sm:text-[2.75rem] lg:text-[3.15rem] xl:text-[3.45rem]"
           />
         </h1>
         <motion.div
@@ -85,8 +92,8 @@ export function Hero() {
           <p className="max-w-lg text-[1.02rem] leading-[1.7] text-cream-50/80 sm:text-[1.12rem]">
             {hero.lead}
           </p>
-          <div className="mt-8">
-            <MagneticButton href="#contact" variant="gold" magnetic={false}>
+          <div className="mt-8 max-w-full">
+            <MagneticButton href="#contact" variant="gold" magnetic={false} className="max-w-full">
               {hero.screenCta}
             </MagneticButton>
             <p className="mt-3 text-[12px] leading-snug tracking-[0.02em] text-cream-50/55 sm:text-[13px]">
@@ -94,6 +101,19 @@ export function Hero() {
             </p>
           </div>
         </motion.div>
+        </div>
+        <figure className="relative hidden aspect-[4/5] overflow-hidden rounded-[1.75rem] lg:order-2 lg:block lg:w-full lg:max-w-[22rem] lg:justify-self-end lg:self-center">
+          <Image
+            src={heroPortrait}
+            alt="Полина Олитто"
+            fill
+            priority
+            quality={90}
+            sizes="(min-width: 1024px) 360px, 180px"
+            className="object-cover"
+            style={{ objectPosition: "center 42%" }}
+          />
+        </figure>
       </div>
       <div className="absolute inset-x-0 bottom-0 z-10 h-px bg-gold-400/50" />
     </section>

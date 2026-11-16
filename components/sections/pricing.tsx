@@ -42,75 +42,60 @@ function Check() {
 
 function PlanCard({ plan }: { plan: Plan }) {
   return (
-    <motion.div variants={cardVariants(Boolean(plan.recommended))} className="h-full min-w-0">
-      <article
+    <motion.article
+      variants={cardVariants(Boolean(plan.recommended))}
+      className={cn(
+        "relative grid min-w-0 grid-rows-[auto_auto_auto_1fr] gap-y-3 rounded-[1.25rem] p-4 sm:rounded-[1.5rem] sm:p-5 lg:grid-rows-subgrid lg:row-span-4",
+        plan.recommended
+          ? "bg-wine-800 text-cream-50 ring-1 ring-gold-400/80"
+          : "border border-wine-700/12 bg-cream-50",
+      )}
+    >
+      {plan.badge ? (
+        <p className="absolute top-4 right-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-gold-400">
+          {plan.badge}
+        </p>
+      ) : null}
+      <h3
         className={cn(
-          "relative flex h-full min-w-0 flex-col rounded-[1.25rem] p-4 sm:rounded-[1.5rem] sm:p-6",
-          plan.recommended
-            ? "bg-wine-800 text-cream-50"
-            : "border border-wine-700/12 bg-cream-50",
+          "min-w-0 font-sans text-[1.2rem] leading-snug font-medium break-words sm:text-[1.4rem]",
+          plan.badge && "pr-16",
+          plan.recommended ? "text-cream-50" : "text-ink-900",
         )}
       >
-        {plan.badge ? (
-          <p
+        {plan.name}
+      </h3>
+      <p className="font-serif text-[1.2rem] leading-[1.2] break-words text-gold-400 sm:text-[1.4rem]">
+        {plan.lead}
+      </p>
+      <p
+        className={cn(
+          "font-sans text-[0.95rem] leading-snug italic sm:text-[1rem]",
+          plan.recommended ? "text-cream-100" : "text-wine-800",
+        )}
+      >
+        {plan.summary}
+      </p>
+      <ul
+        className={cn(
+          "space-y-2 border-t pt-3",
+          plan.recommended ? "border-cream-50/15" : "border-wine-700/10",
+        )}
+      >
+        {plan.features.map((feature) => (
+          <li
+            key={feature}
             className={cn(
-              "mb-3 text-[11px] font-semibold uppercase tracking-[0.14em]",
-              plan.recommended ? "text-gold-400" : "text-wine-700",
+              "flex gap-2.5 text-[14px] leading-snug",
+              plan.recommended ? "text-cream-50" : "text-ink-900",
             )}
           >
-            {plan.badge}
-          </p>
-        ) : null}
-        <h3
-          className={cn(
-            "min-w-0 font-sans text-[1.25rem] leading-snug font-medium break-words sm:text-[1.55rem]",
-            plan.recommended ? "text-cream-50" : "text-ink-900",
-          )}
-        >
-          {plan.name}
-        </h3>
-        <p className="mt-3 font-serif text-[1.25rem] leading-[1.2] break-words text-gold-400 sm:text-[1.55rem]">
-          {plan.lead}
-        </p>
-        <p
-          className={cn(
-            "mt-3 font-sans text-[0.98rem] leading-snug italic sm:text-[1.02rem]",
-            plan.recommended ? "text-cream-100" : "text-wine-800",
-          )}
-        >
-          {plan.summary}
-        </p>
-        {plan.description ? (
-          <p
-            className={cn(
-              "mt-3 text-[0.98rem] leading-[1.55]",
-              plan.recommended ? "text-cream-100/80" : "text-ink-900",
-            )}
-          >
-            {plan.description}
-          </p>
-        ) : null}
-        <ul className={cn("mt-5 space-y-2 border-t pt-4", plan.recommended ? "border-cream-50/15" : "border-wine-700/10")}>
-          {plan.features.map((feature) => (
-            <li
-              key={feature}
-              className={cn(
-                "flex gap-2.5 text-[14px] leading-snug",
-                plan.recommended ? "text-cream-50" : "text-ink-900",
-              )}
-            >
-              <Check />
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto pt-6">
-          <MagneticButton href="#contact" variant="gold" wide>
-            {pricing.cta}
-          </MagneticButton>
-        </div>
-      </article>
-    </motion.div>
+            <Check />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </motion.article>
   );
 }
 
@@ -121,7 +106,7 @@ export function Pricing() {
   const plans = pricing.plans[mode];
 
   return (
-    <section id="formats" className="relative overflow-hidden bg-cream-50 pt-8 pb-10 sm:pt-12 sm:pb-14 lg:pt-14 lg:pb-16">
+    <section id="formats" className="relative scroll-mt-24 overflow-hidden bg-cream-50 pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-10 lg:pb-12">
       <Atmosphere variant="formats" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
@@ -172,13 +157,18 @@ export function Pricing() {
             initial="hidden"
             animate={inView ? "show" : "hidden"}
             exit="exit"
-            className="mt-8 grid gap-4 lg:mt-10 lg:grid-cols-3"
+            className="mt-6 grid gap-4 lg:mt-8 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_auto]"
           >
             {plans.map((plan) => (
               <PlanCard key={plan.name} plan={plan} />
             ))}
           </motion.div>
         </AnimatePresence>
+        <div className="mt-6 flex justify-center sm:mt-8">
+          <MagneticButton href="#contact" variant="gold">
+            {pricing.cta}
+          </MagneticButton>
+        </div>
         </div>
       </div>
     </section>

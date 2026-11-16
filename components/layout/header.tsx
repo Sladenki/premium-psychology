@@ -2,10 +2,29 @@
 
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
-import { hero, nav } from "@/lib/content";
+import { contact, nav } from "@/lib/content";
 import { cn } from "@/lib/cn";
 import { LogoMark } from "@/components/ui/logo-mark";
-import { MagneticButton } from "@/components/ui/magnetic-button";
+
+function TelegramLink() {
+  return (
+    <a
+      href={contact.telegram}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Написать в Telegram"
+      data-cursor="expand"
+      className="inline-flex h-11 w-11 items-center justify-center text-gold-400 transition-opacity duration-300 hover:opacity-70"
+    >
+      <svg viewBox="0 0 24 24" className="h-[1.15rem] w-[1.15rem]" aria-hidden>
+        <path
+          fill="currentColor"
+          d="M21.07 3.37 2.9 10.4c-1.24.48-1.23 1.16-.21 1.46l4.66 1.45 1.78 5.55c.22.68.11.95.75.95.4 0 .58-.18.8-.4l2.27-2.2 4.72 3.48c.87.48 1.5.23 1.71-.8l3.12-14.7c.28-1.3-.5-1.9-1.43-1.42ZM8.3 13.9l9.37-5.9c.47-.28.9-.13.55.18l-7.9 7.13-.3 3.2-1.72-4.61Z"
+        />
+      </svg>
+    </a>
+  );
+}
 
 export function Header() {
   const { scrollY } = useScroll();
@@ -74,22 +93,14 @@ export function Header() {
       <div className="relative z-50 mx-auto flex w-full max-w-[1120px] items-center justify-between gap-3 px-5 py-3 sm:gap-6 sm:px-8 sm:py-4">
         <a
           href="#top"
-          className="flex min-w-0 items-center gap-2.5 leading-none sm:gap-3"
+          className="flex min-w-0 items-center leading-none"
           data-cursor="expand"
           onClick={() => setOpen(false)}
           aria-label="Олитто и партнёры"
         >
-          <LogoMark inverted={light} className="h-9 w-[3.35rem] sm:h-11 sm:w-[4.1rem]" />
-          <span className="hidden min-w-0 sm:block">
-            <span className="block font-serif text-[1.35rem] leading-none tracking-[0.02em] uppercase lg:text-[1.55rem]">
-              Олитто
-            </span>
-            <span className="mt-1.5 block text-[0.58rem] font-medium uppercase leading-none tracking-[0.22em] lg:text-[0.65rem]">
-              и партнёры
-            </span>
-          </span>
+          <LogoMark inverted={light} className="h-11 w-[4.1rem] sm:h-12 sm:w-[4.5rem]" />
         </a>
-        <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-8">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-3 lg:gap-8">
           <nav aria-label="Разделы" className="hidden items-center gap-4 md:flex lg:gap-6 xl:gap-8">
             {nav.map((item) => (
               <a
@@ -101,11 +112,7 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <div className="hidden sm:block">
-            <MagneticButton href="#contact" variant="gold" compact>
-              {hero.cta}
-            </MagneticButton>
-          </div>
+          <TelegramLink />
           <button
             type="button"
             aria-expanded={open}
@@ -159,9 +166,6 @@ export function Header() {
             </a>
           ))}
         </nav>
-        <MagneticButton href="#contact" variant="gold" className="mt-8" wide>
-          {hero.cta}
-        </MagneticButton>
       </div>
     </header>
   );

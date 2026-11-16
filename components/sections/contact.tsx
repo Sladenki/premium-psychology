@@ -1,12 +1,12 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
-import { contactForm } from "@/lib/content";
+import { contactForm, legal } from "@/lib/content";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
 
 const fieldClass =
-  "w-full rounded-2xl border border-wine-700/15 bg-cream-50 px-4 py-3.5 text-[1.0625rem] text-ink-900 outline-none transition-colors duration-300 placeholder:text-ink-500/60 focus:border-gold-400 disabled:opacity-60";
+  "w-full rounded-xl border border-wine-700/15 bg-cream-50 px-3.5 py-2.5 text-[1rem] text-ink-900 outline-none transition-colors duration-300 placeholder:text-ink-500/60 focus:border-gold-400 disabled:opacity-60";
 
 const labelClass = "mb-2 block text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700";
 
@@ -31,10 +31,9 @@ export function ContactForm() {
     const data = new FormData(form);
     const payload = {
       name: String(data.get("name") ?? "").trim(),
-      company: String(data.get("company") ?? "").trim(),
       phone: String(data.get("phone") ?? "").trim(),
-      telegram: String(data.get("telegram") ?? "").trim(),
       details: String(data.get("details") ?? "").trim(),
+      consent: data.get("consent") === "yes",
       website: String(data.get("website") ?? "").trim(),
     };
 
@@ -75,7 +74,7 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-cream-50 pt-10 pb-10 sm:pt-16 sm:pb-14 lg:pt-20 lg:pb-16">
+    <section id="contact" className="relative scroll-mt-24 overflow-hidden bg-cream-50 pt-8 pb-8 sm:pt-12 sm:pb-10 lg:pt-14 lg:pb-12">
       <Atmosphere variant="contact" />
       <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-16 xl:grid-cols-[minmax(0,1fr)_32rem]">
         <div>
@@ -107,38 +106,24 @@ export function ContactForm() {
           <form
             ref={formRef}
             onSubmit={onSubmit}
-            className="relative rounded-[1.35rem] border border-wine-700/12 bg-cream-100 p-4 sm:rounded-[1.75rem] sm:p-8"
+            className="relative rounded-[1.35rem] border border-wine-700/12 bg-cream-100 p-4 sm:p-5"
           >
-            <div className="grid gap-5 sm:grid-cols-2">
-              <label className="block">
-                <span className={labelClass}>{contactForm.nameLabel}</span>
-                <input
-                  name="name"
-                  type="text"
-                  required
-                  minLength={2}
-                  maxLength={120}
-                  autoComplete="name"
-                  disabled={status === "submitting"}
-                  placeholder={contactForm.namePlaceholder}
-                  className={fieldClass}
-                />
-              </label>
-              <label className="block">
-                <span className={labelClass}>{contactForm.companyLabel}</span>
-                <input
-                  name="company"
-                  type="text"
-                  maxLength={160}
-                  autoComplete="organization"
-                  disabled={status === "submitting"}
-                  placeholder={contactForm.companyPlaceholder}
-                  className={fieldClass}
-                />
-              </label>
-            </div>
+            <label className="block">
+              <span className={labelClass}>{contactForm.nameLabel}</span>
+              <input
+                name="name"
+                type="text"
+                required
+                minLength={2}
+                maxLength={120}
+                autoComplete="name"
+                disabled={status === "submitting"}
+                placeholder={contactForm.namePlaceholder}
+                className={fieldClass}
+              />
+            </label>
 
-            <label className="mt-5 block">
+            <label className="mt-3 block">
               <span className={labelClass}>{contactForm.phoneLabel}</span>
               <input
                 name="phone"
@@ -153,40 +138,55 @@ export function ContactForm() {
               />
             </label>
 
-            <label className="mt-5 block">
-              <span className={labelClass}>{contactForm.telegramLabel}</span>
-              <input
-                name="telegram"
-                type="text"
-                maxLength={80}
-                autoComplete="off"
-                disabled={status === "submitting"}
-                placeholder={contactForm.telegramPlaceholder}
-                className={fieldClass}
-              />
-            </label>
-
-            <label className="mt-5 block">
+            <label className="mt-3 block">
               <span className={labelClass}>{contactForm.detailsLabel}</span>
               <textarea
                 name="details"
                 required
                 minLength={5}
                 maxLength={4000}
-                rows={4}
+                rows={3}
                 disabled={status === "submitting"}
                 placeholder={contactForm.detailsPlaceholder}
                 className={`${fieldClass} resize-y`}
               />
             </label>
 
-            {/* Honeypot — скрыто от людей, ловит ботов */}
-            <div aria-hidden className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0">
+            <div className="pointer-events-none absolute top-0 -left-[9999px] h-0 w-0 overflow-hidden opacity-0" aria-hidden>
               <label>
                 Website
                 <input name="website" type="text" tabIndex={-1} autoComplete="off" />
               </label>
             </div>
+
+            <div className="mt-4 flex items-start gap-3">
+              <input
+                id="consent"
+                name="consent"
+                type="checkbox"
+                value="yes"
+                required
+                disabled={status === "submitting"}
+                className="mt-1 h-4 w-4 shrink-0 accent-wine-800"
+              />
+              <span className="text-[0.92rem] leading-snug text-ink-900">
+                <label htmlFor="consent">{contactForm.consentLead} </label>
+                <a
+                  href={legal.consentHref}
+                  className="underline decoration-gold-400/80 underline-offset-4 transition-colors hover:text-wine-800"
+                >
+                  {contactForm.consentLink}
+                </a>
+              </span>
+            </div>
+            <p className="mt-2 pl-7 text-[0.92rem] leading-snug">
+              <a
+                href={legal.privacyHref}
+                className="text-wine-800 underline decoration-gold-400/80 underline-offset-4 transition-colors hover:text-gold-400"
+              >
+                {contactForm.privacyLabel}
+              </a>
+            </p>
 
             {status === "error" ? (
               <p className="mt-5 text-[0.95rem] leading-snug text-wine-700" role="alert">

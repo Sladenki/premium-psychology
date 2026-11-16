@@ -15,7 +15,7 @@ function YearCounter() {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
   const reduce = useReducedMotion();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(about.years);
 
   useEffect(() => {
     if (!inView || reduce) return;
@@ -27,11 +27,9 @@ function YearCounter() {
     return () => controls.stop();
   }, [inView, reduce]);
 
-  const shown = reduce ? about.years : value;
-
   return (
-    <span ref={ref} className="font-serif leading-none text-gold-400">
-      {shown}
+    <span ref={ref} className="font-serif leading-none text-gold-400" aria-hidden>
+      {value}
     </span>
   );
 }
@@ -70,26 +68,28 @@ function Portrait({
 }
 
 function LogoMarquee() {
-  const sequence = Array.from({ length: 2 }, () => about.logos).flat();
-
   return (
-    <div
-      className="marquee relative z-10 mt-8 w-full overflow-hidden border-y border-wine-700/15 py-6 sm:mt-10 sm:py-7"
-      aria-label="Направления работы"
-    >
-      <div className="marquee-track flex w-max">
-        {[0, 1].map((copy) => (
-          <ul key={copy} aria-hidden={copy === 1} className="flex items-center">
-            {sequence.map((name, index) => (
-              <li key={`${copy}-${name}-${index}`} className="flex items-center">
-                <span className="px-8 text-[13px] font-medium uppercase tracking-[0.16em] text-ink-500 sm:px-12 sm:text-sm sm:tracking-[0.18em]">
-                  {name}
-                </span>
-                <span className="h-1 w-1 shrink-0 rounded-full bg-gold-400" aria-hidden />
-              </li>
-            ))}
-          </ul>
+    <div className="relative z-10 mt-8 sm:mt-10">
+      <ul className="sr-only">
+        {about.logos.map((name) => (
+          <li key={name}>{name}</li>
         ))}
+      </ul>
+      <div className="marquee w-full overflow-hidden border-y border-wine-700/15 py-6 sm:py-7" aria-hidden>
+        <div className="marquee-track flex w-max">
+          {[0, 1].map((copy) => (
+            <ul key={copy} className="flex items-center">
+              {about.logos.map((name) => (
+                <li key={`${copy}-${name}`} className="flex items-center">
+                  <span className="px-8 text-[13px] font-medium uppercase tracking-[0.16em] text-ink-500 sm:px-12 sm:text-sm sm:tracking-[0.18em]">
+                    {name}
+                  </span>
+                  <span className="h-1 w-1 shrink-0 rounded-full bg-gold-400" />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -97,11 +97,11 @@ function LogoMarquee() {
 
 export function AboutSituations() {
   return (
-    <section id="practice" className="relative overflow-hidden bg-cream-50 pt-10 pb-0 sm:pt-16 lg:pt-20">
+    <section id="practice" className="relative overflow-hidden bg-cream-50 pt-8 pb-6 sm:pt-12 sm:pb-8 lg:pt-14">
       <Atmosphere variant="practice" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div>
-          <h2 className="-translate-y-3 max-w-[22ch] font-serif text-[1.7rem] leading-[1.08] tracking-[-0.02em] text-ink-900 sm:-translate-y-4 sm:text-[2.85rem] lg:text-[3.35rem]">
+          <h2 className="max-w-[22ch] font-serif text-[1.7rem] leading-[1.08] tracking-[-0.02em] text-ink-900 sm:text-[2.85rem] lg:text-[3.35rem]">
             {about.lede}
           </h2>
           <FadeIn className="mt-8 max-w-3xl" delay={0.1}>
@@ -109,11 +109,11 @@ export function AboutSituations() {
               {about.ledeMore}
             </p>
           </FadeIn>
-          <FadeIn className="mt-10" delay={0.05}>
-            <ul className="grid max-w-4xl gap-x-12 gap-y-3 border-l border-gold-400/70 pl-6 sm:grid-cols-2">
+          <FadeIn className="mt-8 sm:mt-10" delay={0.05}>
+            <ul className="max-w-3xl space-y-3 border-l border-gold-400/70 pl-6 sm:space-y-4">
               {about.quotes.map((quote) => (
-                <li key={quote} className="font-sans text-[1.12rem] leading-snug text-ink-900 italic sm:text-[1.4rem]">
-                  «{quote}»
+                <li key={quote} className="font-sans text-[1.08rem] leading-snug text-ink-900 italic sm:text-[1.28rem]">
+                  {quote}
                 </li>
               ))}
             </ul>
@@ -126,7 +126,7 @@ export function AboutSituations() {
 
 export function AboutSystem() {
   return (
-    <section className="relative overflow-hidden bg-cream-50 pt-12 pb-0 sm:pt-20">
+    <section className="relative overflow-hidden bg-cream-50 pt-12 pb-16 sm:pt-16 sm:pb-24 lg:pb-28">
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <div className="rounded-[1.35rem] bg-cream-100 px-5 py-7 sm:rounded-[1.75rem] sm:px-10 sm:py-10">
           <div className="grid gap-8 lg:grid-cols-[18rem_1fr] lg:gap-12">
@@ -157,16 +157,22 @@ export function AboutSystem() {
 
 export function AboutFounder() {
   return (
-    <section className="relative overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
+    <section id="about" className="relative scroll-mt-24 overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
       <Atmosphere variant="founder" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-14 xl:gap-20">
-          <div className="min-w-0">
+        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:gap-14 xl:gap-20">
+          <FadeIn className="order-2 mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:order-1 lg:mx-0 lg:max-w-none" delay={0.08}>
+            <Portrait
+              src={portraitQuiet}
+              sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
+              objectPosition="center 22%"
+            />
+          </FadeIn>
+
+          <div className="order-1 min-w-0 lg:order-2">
             <div>
-              <p
-                className="font-serif text-[clamp(4.25rem,9vw,6.25rem)] leading-[0.85] text-gold-400"
-                aria-label={`${about.years}+ ${about.yearsLabel}`}
-              >
+              <p className="font-serif text-[clamp(4.25rem,9vw,6.25rem)] leading-[0.85] text-gold-400">
+                <span className="sr-only">{about.years}+</span>
                 <YearCounter />
                 <span aria-hidden>+</span>
               </p>
@@ -180,7 +186,7 @@ export function AboutFounder() {
             <h3 className="mt-7 font-serif text-[2rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:mt-9 sm:text-[2.55rem]">
               {about.founder.name}
             </h3>
-            <p className="mt-2.5 font-sans text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-wine-700 sm:text-[0.78rem]">
+            <p className="mt-3 max-w-[34rem] text-[0.98rem] leading-snug text-wine-700 sm:text-[1.05rem]">
               {about.founder.role}
             </p>
 
@@ -195,14 +201,6 @@ export function AboutFounder() {
               {about.founder.companies.join(" · ")}
             </p>
           </div>
-
-          <FadeIn className="mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:mx-0 lg:max-w-none" delay={0.08}>
-            <Portrait
-              src={portraitQuiet}
-              sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
-              objectPosition="center 22%"
-            />
-          </FadeIn>
         </div>
       </div>
     </section>
@@ -225,6 +223,16 @@ export function AboutPartners() {
           <p className="mx-auto mt-5 max-w-xl font-sans text-[1.15rem] leading-snug text-wine-800 italic sm:text-[1.25rem]">
             {about.partnersClose}
           </p>
+          <ul className="mx-auto mt-7 flex max-w-2xl flex-wrap justify-center gap-2">
+            {about.expertise.map((item) => (
+              <li
+                key={item}
+                className="rounded-full border border-wine-700/15 bg-cream-50 px-3.5 py-1.5 text-[12.5px] leading-snug text-ink-900 sm:text-[13px]"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </FadeIn>
       </div>
     </section>
@@ -236,8 +244,8 @@ export function About() {
   return (
     <>
       <AboutSituations />
-      <AboutSystem />
       <AboutFounder />
+      <AboutSystem />
       <AboutPartners />
     </>
   );

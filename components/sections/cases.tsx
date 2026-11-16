@@ -9,28 +9,28 @@ import { RevealLines } from "@/components/ui/reveal";
 
 function CaseDetail({ item }: { item: CaseStudy }) {
   return (
-    <article className="rounded-[1.75rem] border border-wine-700/10 bg-cream-50 px-5 py-7 sm:px-8 sm:py-9">
+    <article className="rounded-[1.35rem] border border-wine-700/10 bg-cream-50 px-4 py-4 sm:rounded-[1.5rem] sm:px-6 sm:py-5">
       <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">{item.name}</p>
-      <h3 className="mt-5 font-sans text-[1.28rem] leading-snug font-medium text-ink-900 sm:text-[1.75rem]">
+      <h3 className="mt-2 font-sans text-[1.15rem] leading-snug font-medium text-ink-900 sm:text-[1.4rem] lg:text-[1.5rem]">
         {item.title}
       </h3>
-      <ol className="mt-8">
+      <ol className="mt-3">
         {item.points.map((point, index) => {
           const paragraphs = Array.isArray(point.text) ? point.text : [point.text];
           return (
             <li
               key={point.label}
-              className="grid gap-2 border-t border-wine-700/10 py-5 sm:grid-cols-[11.5rem_minmax(0,1fr)] sm:items-start sm:gap-6 sm:py-6"
+              className="grid gap-1.5 border-t border-wine-700/10 py-2.5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:items-start sm:gap-5 sm:py-3"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-serif text-[1.15rem] leading-none text-gold-400 lining-nums">
+                <span className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">
                   {point.label}
                 </span>
               </div>
-              <div className="min-w-0 space-y-3 text-[1.02rem] leading-[1.65] text-ink-900">
+              <div className="min-w-0 space-y-2 text-[0.98rem] leading-[1.5] text-ink-900 lg:text-[1.02rem]">
                 {paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -40,7 +40,7 @@ function CaseDetail({ item }: { item: CaseStudy }) {
         })}
       </ol>
       {item.project ? (
-        <p className="mt-2 border-t border-gold-400/60 pt-6 text-[1.02rem] leading-[1.65] text-ink-900">
+        <p className="mt-1 border-t border-gold-400/60 pt-3 text-[0.98rem] leading-[1.5] text-ink-900">
           Один из проектов:{" "}
           <a
             href={item.project.href}
@@ -72,14 +72,12 @@ export function Cases() {
   const [activeId, setActiveId] = useState(cases.items[0].id);
   const reduce = useReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
-  const didMount = useRef(false);
+  const initialId = useRef(activeId);
   const active = cases.items.find((item) => item.id === activeId) ?? cases.items[0];
 
   useEffect(() => {
-    if (!didMount.current) {
-      didMount.current = true;
-      return;
-    }
+    if (activeId === initialId.current) return;
+    if (window.matchMedia("(min-width: 1024px)").matches) return;
 
     panelRef.current?.scrollIntoView({
       behavior: reduce ? "auto" : "smooth",
@@ -88,11 +86,11 @@ export function Cases() {
   }, [activeId, reduce]);
 
   return (
-    <section id="cases" className="relative overflow-x-clip bg-cream-50 pt-6 pb-6 sm:pt-10 sm:pb-10 lg:pt-12 lg:pb-12">
+    <section id="cases" className="relative scroll-mt-24 overflow-x-clip bg-cream-50 pt-6 pb-6 sm:pt-8 sm:pb-8 lg:pt-10 lg:pb-8">
       <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-start gap-8 lg:grid-cols-[minmax(16rem,22rem)_minmax(0,1fr)] lg:gap-12">
-          <div className="lg:sticky lg:top-28">
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(13.5rem,17rem)_minmax(0,1fr)] lg:gap-8">
+          <div className="lg:sticky lg:top-24">
             <RevealLines
               lines={cases.title}
               className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
@@ -101,10 +99,11 @@ export function Cases() {
             <div
               role="tablist"
               aria-label="Кейсы"
-              className="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0 lg:mt-10 lg:flex-col lg:overflow-visible lg:pb-0"
+              className="mt-6 grid grid-cols-2 gap-2 lg:mt-8 lg:grid-cols-1 lg:gap-2.5"
             >
-              {cases.items.map((item) => {
+              {cases.items.map((item, index) => {
                 const selected = item.id === active.id;
+                const last = index === cases.items.length - 1;
                 return (
                   <button
                     key={item.id}
@@ -119,14 +118,17 @@ export function Cases() {
                       setActiveId(item.id);
                     }}
                     className={cn(
-                      "shrink-0 snap-start rounded-2xl px-4 py-3 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:w-full lg:px-5 lg:py-4",
-                      selected ? "bg-wine-800 text-cream-50" : "bg-cream-50 text-ink-900 hover:bg-cream-50/80",
+                      "h-full rounded-2xl border px-3 py-3 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:px-4 lg:py-3",
+                      last && "col-span-2 w-[calc(50%-0.25rem)] justify-self-center lg:col-span-1 lg:w-full",
+                      selected
+                        ? "border-wine-800 bg-wine-800 text-cream-50"
+                        : "border-wine-700/12 bg-cream-50 text-ink-900 hover:bg-cream-100",
                     )}
                   >
-                    <span className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">
+                    <span className="font-serif text-[1rem] leading-none text-gold-400 lining-nums">
                       {item.index}
                     </span>
-                    <span className="mt-2 block max-w-[16rem] text-[0.95rem] leading-snug font-medium lg:max-w-none">
+                    <span className="mt-1.5 block text-[0.9rem] leading-snug font-medium lg:text-[0.95rem]">
                       {item.name}
                     </span>
                     <span

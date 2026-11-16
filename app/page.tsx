@@ -10,6 +10,7 @@ import { ContactForm } from "@/components/sections/contact";
 import { Faq } from "@/components/sections/faq";
 import { Footer } from "@/components/sections/footer";
 import { Hero } from "@/components/sections/hero";
+import { Path } from "@/components/sections/path";
 import { Pricing } from "@/components/sections/pricing";
 import { Process } from "@/components/sections/process";
 
@@ -19,10 +20,11 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Path />
         <AboutSituations />
-        <AboutSystem />
         <Pricing />
         <AboutFounder />
+        <AboutSystem />
         <Process />
         <AboutPartners />
         <Cases />

@@ -93,7 +93,7 @@ export function MagneticButton({
     : `circle(0% at ${origin.x}% ${origin.y}%)`;
 
   return (
-    <div ref={wrapRef} className={cn(wide ? "flex w-full" : "inline-flex", className)}>
+    <div ref={wrapRef} className={cn(wide ? "flex w-full" : "flex w-fit max-w-full", className)}>
       <motion.a
         ref={buttonRef}
         href={href}
@@ -114,10 +114,10 @@ export function MagneticButton({
           y.set(0);
         }}
         className={cn(
-          "relative inline-flex items-center justify-center overflow-hidden rounded-full font-medium uppercase",
+          "relative inline-flex min-w-0 max-w-full items-center justify-center overflow-hidden rounded-full text-center font-medium whitespace-normal uppercase",
           compact
             ? "px-4 py-2.5 text-[11px] tracking-[0.06em]"
-            : "px-8 py-3.5 text-[13px] tracking-[0.08em]",
+            : "px-6 py-3.5 text-[12px] tracking-[0.06em] sm:px-8 sm:text-[13px] sm:tracking-[0.08em]",
           wide && "w-full",
           styles.button,
         )}
