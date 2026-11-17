@@ -84,11 +84,13 @@ export function ContactForm() {
               lines={[contactForm.title[0]]}
               className="font-serif text-[2.05rem] leading-[1.08] tracking-[-0.03em] text-ink-900 sm:text-6xl"
             />
+            {" "}
             <RevealLines
               as="span"
               lines={[contactForm.title[1]]}
               className="mt-1 font-sans text-[1.7rem] leading-[1.1] text-wine-800 italic sm:text-[2.75rem]"
             />
+            {" "}
             <RevealLines
               as="span"
               lines={[contactForm.title[2]]}

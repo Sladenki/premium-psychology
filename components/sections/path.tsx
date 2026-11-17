@@ -4,14 +4,14 @@ export function Path() {
   return (
     <section aria-label="Что происходит с задачей" className="bg-cream-50">
       <div className="mx-auto w-full max-w-[1120px] px-5 py-8 sm:px-8 sm:py-10 lg:py-16">
-        <ol className="lg:grid lg:grid-cols-3 lg:gap-8">
+        <ol className="list-none lg:grid lg:grid-cols-3 lg:gap-8">
           {path.steps.map((step, index) => (
             <li
               key={step.number}
               className="grid grid-cols-[2.4rem_minmax(0,1fr)] items-start gap-x-3 py-4 first:pt-0 last:pb-0 max-lg:[&:not(:first-child)]:border-t max-lg:[&:not(:first-child)]:border-wine-700/10 lg:block lg:py-0"
             >
               <div className="flex items-center lg:gap-3">
-                <span className="pt-0.5 font-serif text-[1.05rem] leading-none text-gold-400 lining-nums lg:pt-0 lg:text-[1.15rem]">
+                <span aria-hidden className="pt-0.5 font-serif text-[1.05rem] leading-none text-gold-400 lining-nums lg:pt-0 lg:text-[1.15rem]">
                   {step.number}
                 </span>
                 {index < path.steps.length - 1 ? (

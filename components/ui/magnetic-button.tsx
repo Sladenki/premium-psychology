@@ -125,6 +125,7 @@ export function MagneticButton({
         <span className="relative z-0">{children}</span>
         <motion.span
           aria-hidden
+          inert
           className="absolute inset-0 z-10 flex items-center justify-center rounded-full"
           initial={false}
           animate={{ clipPath: reduce ? "circle(0% at 50% 50%)" : clip }}

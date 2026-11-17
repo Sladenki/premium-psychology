@@ -5,7 +5,6 @@ import { useRef } from "react";
 import { pricing, type Plan } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
 import { cn } from "@/lib/cn";
-import { MagneticButton } from "@/components/ui/magnetic-button";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { RevealLines } from "@/components/ui/reveal";
 
@@ -47,7 +46,7 @@ function PlanCard({ plan }: { plan: Plan }) {
       className={cn(
         "relative grid min-w-0 grid-rows-[auto_auto_auto_1fr] gap-y-3 rounded-[1.25rem] p-4 sm:rounded-[1.5rem] sm:p-5 lg:grid-rows-subgrid lg:row-span-4",
         plan.recommended
-          ? "bg-wine-800 text-cream-50 ring-1 ring-gold-400/80"
+          ? "bg-wine-800 text-cream-50 ring-2 ring-gold-400"
           : "border border-wine-700/12 bg-cream-50",
       )}
     >
@@ -164,10 +163,14 @@ export function Pricing() {
             ))}
           </motion.div>
         </AnimatePresence>
-        <div className="mt-6 flex justify-center sm:mt-8">
-          <MagneticButton href="#contact" variant="gold">
+        <div className="mt-8 flex justify-center sm:mt-10">
+          <a
+            href="#contact"
+            data-cursor="expand"
+            className="inline-flex w-full max-w-[40rem] items-center justify-center rounded-full bg-wine-800 px-7 py-3.5 text-center text-[13px] font-semibold uppercase tracking-[0.06em] text-cream-50 transition-colors duration-300 hover:bg-gold-400 hover:text-wine-950 sm:max-w-[44rem] sm:text-[14px]"
+          >
             {pricing.cta}
-          </MagneticButton>
+          </a>
         </div>
         </div>
       </div>

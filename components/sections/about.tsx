@@ -1,38 +1,12 @@
 "use client";
 
-import { animate, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import portraitQuiet from "../../photos/ph3.jpg";
 import { about } from "@/lib/content";
 import { cn } from "@/lib/cn";
-import { EXPO } from "@/lib/easing";
 import { Atmosphere } from "@/components/ui/atmosphere";
 import { FadeIn } from "@/components/ui/reveal";
 import type { StaticImageData } from "next/image";
-
-function YearCounter() {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-15% 0px" });
-  const reduce = useReducedMotion();
-  const [value, setValue] = useState(about.years);
-
-  useEffect(() => {
-    if (!inView || reduce) return;
-    const controls = animate(0, about.years, {
-      duration: 1.35,
-      ease: EXPO,
-      onUpdate: (latest) => setValue(Math.round(latest)),
-    });
-    return () => controls.stop();
-  }, [inView, reduce]);
-
-  return (
-    <span ref={ref} className="font-serif leading-none text-gold-400" aria-hidden>
-      {value}
-    </span>
-  );
-}
 
 function Portrait({
   src,
@@ -157,48 +131,44 @@ export function AboutSystem() {
 
 export function AboutFounder() {
   return (
-    <section id="about" className="relative scroll-mt-24 overflow-hidden bg-cream-50 pt-10 pb-12 sm:pt-14 sm:pb-16">
+    <section id="about" className="relative scroll-mt-24 overflow-hidden bg-cream-50 py-8 sm:py-10 lg:py-12">
       <Atmosphere variant="founder" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)] lg:gap-14 xl:gap-20">
-          <FadeIn className="order-2 mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:order-1 lg:mx-0 lg:max-w-none" delay={0.08}>
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,15.5rem)_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] xl:gap-16">
+          <FadeIn className="order-2 mx-auto w-full max-w-[16rem] lg:order-1 lg:mx-0 lg:max-w-none" delay={0.08}>
             <Portrait
               src={portraitQuiet}
-              sizes="(min-width: 1024px) 480px, (min-width: 640px) 420px, 90vw"
+              sizes="(min-width: 1280px) 272px, (min-width: 1024px) 248px, 256px"
               objectPosition="center 22%"
             />
           </FadeIn>
 
           <div className="order-1 min-w-0 lg:order-2">
-            <div>
-              <p className="font-serif text-[clamp(4.25rem,9vw,6.25rem)] leading-[0.85] text-gold-400">
-                <span className="sr-only">{about.years}+</span>
-                <YearCounter />
-                <span aria-hidden>+</span>
-              </p>
-              <p className="mt-4 max-w-[12ch] font-serif text-[1.45rem] leading-[1.15] text-ink-900 sm:text-[1.65rem]">
-                {about.yearsLabel}
-              </p>
-            </div>
+            <p className="font-serif text-[3.5rem] leading-[0.85] text-gold-400 sm:text-[4.25rem]">
+              {about.years}+
+            </p>
+            <p className="mt-2 max-w-[12ch] font-serif text-[1.35rem] leading-[1.15] text-ink-900 sm:text-[1.5rem]">
+              {about.yearsLabel}
+            </p>
 
-            <div className="mt-7 h-px max-w-[8rem] bg-gold-400 sm:mt-9" aria-hidden />
+            <div className="mt-4 h-px max-w-[8rem] bg-gold-400" aria-hidden />
 
-            <h3 className="mt-7 font-serif text-[2rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:mt-9 sm:text-[2.55rem]">
+            <h3 className="mt-4 font-serif text-[1.85rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-[2.15rem]">
               {about.founder.name}
             </h3>
-            <p className="mt-3 max-w-[34rem] text-[0.98rem] leading-snug text-wine-700 sm:text-[1.05rem]">
+            <p className="mt-2 max-w-[34rem] text-[0.98rem] leading-snug text-wine-700 sm:text-[1.02rem]">
               {about.founder.role}
             </p>
 
-            <div className="mt-6 max-w-[34rem] space-y-4 text-[1rem] leading-[1.7] text-ink-500 sm:mt-7 sm:text-[1.05rem]">
+            <div className="mt-4 max-w-[40rem] space-y-3 text-[0.98rem] leading-[1.55] text-ink-500 sm:text-[1.02rem]">
               {about.founder.bio.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
 
-            <p className="mt-7 max-w-[34rem] border-t border-wine-700/10 pt-5 text-[0.8125rem] font-semibold leading-snug text-ink-500 sm:mt-8 sm:text-[0.875rem]">
-              <span className="text-ink-900">{about.founder.experienceLabel}:</span>{" "}
-              {about.founder.companies.join(" · ")}
+            <p className="mt-4 max-w-[40rem] border-t border-wine-700/10 pt-3 text-[0.8125rem] leading-snug text-ink-500 sm:text-[0.875rem]">
+              <span className="font-semibold text-ink-900">{about.founder.experienceLabel}:</span>{" "}
+              <span className="font-normal">{about.founder.companies.join(" · ")}</span>
             </p>
           </div>
         </div>
@@ -220,19 +190,12 @@ export function AboutPartners() {
           <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-500 sm:text-[1.08rem]">
             {about.partnersBody}
           </p>
-          <p className="mx-auto mt-5 max-w-xl font-sans text-[1.15rem] leading-snug text-wine-800 italic sm:text-[1.25rem]">
+          <p className="mx-auto mt-5 max-w-3xl text-[0.95rem] leading-snug text-gold-400 sm:text-[1.02rem]">
+            {about.expertise.join(" · ")}
+          </p>
+          <p className="mx-auto mt-6 max-w-xl font-sans text-[1.2rem] leading-snug font-medium text-wine-800 italic sm:text-[1.35rem]">
             {about.partnersClose}
           </p>
-          <ul className="mx-auto mt-7 flex max-w-2xl flex-wrap justify-center gap-2">
-            {about.expertise.map((item) => (
-              <li
-                key={item}
-                className="rounded-full border border-wine-700/15 bg-cream-50 px-3.5 py-1.5 text-[12.5px] leading-snug text-ink-900 sm:text-[13px]"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
         </FadeIn>
       </div>
     </section>

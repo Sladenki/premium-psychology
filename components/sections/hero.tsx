@@ -55,10 +55,10 @@ export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-wine-950 text-cream-50">
+    <section id="top" className="relative flex min-h-[100svh] items-center overflow-x-clip bg-wine-950 px-5 pt-20 pb-10 text-cream-50 sm:px-8 lg:pt-24">
       <Curtain />
       <HeroField />
-      <div className="relative z-10 mx-auto grid min-h-[100svh] w-full max-w-[1120px] items-center gap-6 px-5 pt-24 pb-12 sm:px-8 sm:pt-28 lg:grid-cols-[minmax(0,36rem)_minmax(13rem,22rem)] lg:gap-10 lg:pt-28 lg:pb-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-5 lg:grid-cols-[minmax(0,1fr)_18.75rem] lg:gap-16">
         <div className="order-2 min-w-0 lg:order-1">
         <h1>
           <RevealLines
@@ -102,16 +102,16 @@ export function Hero() {
           </div>
         </motion.div>
         </div>
-        <figure className="relative hidden aspect-[4/5] overflow-hidden rounded-[1.75rem] lg:order-2 lg:block lg:w-full lg:max-w-[22rem] lg:justify-self-end lg:self-center">
+        <figure className="relative order-1 aspect-square w-[8.5rem] justify-self-end overflow-hidden rounded-full sm:w-40 lg:order-2 lg:w-[18.75rem]">
           <Image
             src={heroPortrait}
             alt="Полина Олитто"
             fill
             priority
             quality={90}
-            sizes="(min-width: 1024px) 360px, 180px"
+            sizes="(min-width: 1024px) 300px, 160px"
             className="object-cover"
-            style={{ objectPosition: "center 42%" }}
+            style={{ objectPosition: "center 12%" }}
           />
         </figure>
       </div>

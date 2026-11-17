@@ -14,9 +14,9 @@ function TelegramLink() {
       rel="noopener noreferrer"
       aria-label="Написать в Telegram"
       data-cursor="expand"
-      className="inline-flex h-11 w-11 items-center justify-center text-gold-400 transition-opacity duration-300 hover:opacity-70"
+      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-gold-400 text-gold-400 transition-colors duration-300 hover:bg-gold-400 hover:text-wine-950"
     >
-      <svg viewBox="0 0 24 24" className="h-[1.15rem] w-[1.15rem]" aria-hidden>
+      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden>
         <path
           fill="currentColor"
           d="M21.07 3.37 2.9 10.4c-1.24.48-1.23 1.16-.21 1.46l4.66 1.45 1.78 5.55c.22.68.11.95.75.95.4 0 .58-.18.8-.4l2.27-2.2 4.72 3.48c.87.48 1.5.23 1.71-.8l3.12-14.7c.28-1.3-.5-1.9-1.43-1.42ZM8.3 13.9l9.37-5.9c.47-.28.9-.13.55.18l-7.9 7.13-.3 3.2-1.72-4.61Z"
