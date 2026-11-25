@@ -70,18 +70,6 @@ function CaseDetail({ item }: { item: CaseStudy }) {
           </a>
         </p>
       ) : null}
-      {item.quote ? (
-        <figure className="mt-2 border-t border-gold-400/60 pt-6">
-          <blockquote className="font-sans text-[1.2rem] leading-snug text-ink-900 italic sm:text-[1.35rem]">
-            «{item.quote}»
-          </blockquote>
-          {item.quoteBy ? (
-            <figcaption className="mt-3 text-[12px] font-medium uppercase tracking-[0.08em] text-ink-500">
-              {item.quoteBy}
-            </figcaption>
-          ) : null}
-        </figure>
-      ) : null}
     </article>
   );
 }

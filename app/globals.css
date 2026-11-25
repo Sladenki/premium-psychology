@@ -17,9 +17,6 @@
 
   --font-sans: var(--font-geist), "Segoe UI", sans-serif;
   --font-serif: var(--font-display), "Segoe UI", sans-serif;
-
-  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-hover: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 html {
@@ -93,10 +90,6 @@ body {
   .has-custom-cursor textarea {
     cursor: text !important;
   }
-
-  .has-custom-cursor select {
-    cursor: auto !important;
-  }
 }
 
 @keyframes marquee {
@@ -117,16 +110,6 @@ body {
   animation-play-state: paused;
 }
 
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
 @media (prefers-reduced-motion: reduce) {
   .marquee-track {
     animation: none;

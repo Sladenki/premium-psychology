@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { pricing, type Plan } from "@/lib/content";
 import { EXPO } from "@/lib/easing";
@@ -11,7 +11,6 @@ import { RevealLines } from "@/components/ui/reveal";
 const gridVariants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
-  exit: { opacity: 0, y: -12, transition: { duration: 0.35, ease: EXPO } },
 };
 
 function cardVariants(recommended: boolean) {
@@ -101,8 +100,6 @@ function PlanCard({ plan }: { plan: Plan }) {
 export function Pricing() {
   const gridRef = useRef<HTMLDivElement>(null);
   const inView = useInView(gridRef, { once: true, margin: "0px 0px -12% 0px" });
-  const mode = "business" as const;
-  const plans = pricing.plans[mode];
 
   return (
     <section id="formats" className="relative scroll-mt-24 overflow-hidden bg-cream-50 pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-10 lg:pb-12">
@@ -113,56 +110,17 @@ export function Pricing() {
           className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-6xl"
         />
 
-        <div ref={gridRef}>
-        {/*
-        <div
-          role="tablist"
-          aria-label="Контур работы"
-          className="mt-12 inline-grid grid-cols-2 rounded-full border border-wine-700/30 p-1"
+        <motion.div
+          ref={gridRef}
+          variants={gridVariants}
+          initial="hidden"
+          animate={inView ? "show" : "hidden"}
+          className="mt-6 grid gap-4 lg:mt-8 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_auto]"
         >
-          {pricing.modes.map((item) => {
-            const selected = mode === item.id;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                id={`tab-${item.id}`}
-                aria-selected={selected}
-                aria-controls={`panel-${item.id}`}
-                onClick={() => setMode(item.id)}
-                className="relative rounded-full px-5 py-3 text-[12px] font-medium uppercase tracking-[0.08em] sm:px-8 sm:text-[13px]"
-              >
-                {selected ? (
-                  <motion.span
-                    layoutId="pricing-indicator"
-                    className="absolute inset-0 rounded-full bg-wine-800"
-                    transition={{ duration: 0.45, ease: EXPO }}
-                  />
-                ) : null}
-                <span className={cn("relative z-10", selected ? "text-cream-50" : "text-ink-500")}>
-                  {item.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-        */}
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={mode}
-            variants={gridVariants}
-            initial="hidden"
-            animate={inView ? "show" : "hidden"}
-            exit="exit"
-            className="mt-6 grid gap-4 lg:mt-8 lg:grid-cols-3 lg:grid-rows-[auto_auto_auto_auto]"
-          >
-            {plans.map((plan) => (
-              <PlanCard key={plan.name} plan={plan} />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+          {pricing.plans.map((plan) => (
+            <PlanCard key={plan.name} plan={plan} />
+          ))}
+        </motion.div>
         <div className="mt-8 flex justify-center sm:mt-10">
           <a
             href="#contact"
@@ -171,7 +129,6 @@ export function Pricing() {
           >
             {pricing.cta}
           </a>
-        </div>
         </div>
       </div>
     </section>

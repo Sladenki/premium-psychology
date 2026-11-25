@@ -201,15 +201,3 @@ export function AboutPartners() {
     </section>
   );
 }
-
-/** @deprecated Prefer the split About* sections; kept for compatibility. */
-export function About() {
-  return (
-    <>
-      <AboutSituations />
-      <AboutFounder />
-      <AboutSystem />
-      <AboutPartners />
-    </>
-  );
-}
