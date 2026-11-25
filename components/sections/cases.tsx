@@ -39,16 +39,34 @@ function CaseDetail({ item }: { item: CaseStudy }) {
           );
         })}
       </ol>
-      {item.project ? (
+      {item.projects?.length ? (
         <p className="mt-1 border-t border-gold-400/60 pt-3 text-[0.98rem] leading-[1.5] text-ink-900">
           Один из проектов:{" "}
+          {item.projects.map((project, index) => (
+            <span key={project.href}>
+              {index > 0 ? " · " : null}
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-wine-800 underline decoration-gold-400/70 underline-offset-4 transition-colors hover:text-gold-400"
+              >
+                {project.label}
+              </a>
+            </span>
+          ))}
+        </p>
+      ) : null}
+      {item.more ? (
+        <p className="mt-1 border-t border-gold-400/60 pt-3 text-[0.98rem] leading-[1.5] text-ink-900">
+          Подробнее:{" "}
           <a
-            href={item.project.href}
+            href={item.more.href}
             target="_blank"
             rel="noreferrer"
-            className="font-medium text-wine-800 underline decoration-gold-400/70 underline-offset-4 transition-colors hover:text-gold-400"
+            className="font-medium text-wine-800 underline decoration-gold-400/70 underline-offset-4 transition-colors hover:text-gold-400 break-all"
           >
-            {item.project.label}
+            {item.more.label}
           </a>
         </p>
       ) : null}

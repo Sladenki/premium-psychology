@@ -263,7 +263,8 @@ export type CaseStudy = {
   points: { label: string; text: string | string[] }[];
   quote?: string;
   quoteBy?: string;
-  project?: { label: string; href: string };
+  projects?: { label: string; href: string }[];
+  more?: { label: string; href: string };
 };
 
 export const cases = {
@@ -308,6 +309,10 @@ export const cases = {
           text: "Перераспределили ответственность и изменили ключевые процессы. В зачислении срок оформления сократился с 30 до 11 дней, доля комплектов документов с ошибками и доработкой с 50% до 12%.",
         },
       ],
+      more: {
+        label: "https://www.hse.ru/dpocases#case10",
+        href: "https://www.hse.ru/dpocases#case10",
+      },
     },
     {
       id: "reengineering",
@@ -368,16 +373,16 @@ export const cases = {
           text: "На выходе остаётся не только презентация, а понятная логика продукта: кому и что предлагаем, за что клиент готов платить, что уже подтверждено и что нужно проверить дальше.",
         },
       ],
-      project: {
-        label: "GraphON",
-        href: "https://graph-on.ru/",
-      },
+      projects: [
+        { label: "GraphON", href: "https://graph-on.ru/" },
+        { label: "https://th.dev.rpa-bot.ru/", href: "https://th.dev.rpa-bot.ru/" },
+      ],
     },
   ] satisfies CaseStudy[],
 };
 
 export const contact = {
-  email: "hello@example.com",
+  email: "olitto.partners@yandex.ru",
   telegram: "https://t.me/pol_oli",
   max: "https://max.ru/u/f9LHodD0cOJFsCoOJl9egxngJqvY-6n7-UoRn2uLg-zTqXS3qQkAu9S8CN0",
   linkedin: "https://www.linkedin.com/",
@@ -399,7 +404,7 @@ export const contactForm = {
   detailsPlaceholder: "Пара слов о ситуации",
   consentLead: "Даю согласие на",
   consentLink: "обработку персональных данных",
-  privacyLabel: "Политика обработки персональных данных",
+  privacyLabel: "Политика в отношении обработки персональных данных",
   submit: "Отправить",
   submitting: "Отправляем…",
   thanks: "Спасибо! Заявка успешно отправлена.",

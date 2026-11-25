@@ -1,6 +1,7 @@
 import { contact, footer } from "@/lib/content";
+import { CopyEmail } from "@/components/ui/copy-email";
 
-function Icon({ name }: { name: "telegram" | "max" | "linkedin" | "email" }) {
+function Icon({ name }: { name: "telegram" | "max" | "linkedin" }) {
   if (name === "telegram") {
     return (
       <svg viewBox="0 0 24 24" className="h-[1.35rem] w-[1.35rem]" aria-hidden>
@@ -25,39 +26,20 @@ function Icon({ name }: { name: "telegram" | "max" | "linkedin" | "email" }) {
       </svg>
     );
   }
-  if (name === "linkedin") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-[1.2rem] w-[1.2rem]" aria-hidden>
-        <path
-          fill="currentColor"
-          d="M6.7 9.2H4.1V20h2.6V9.2zM5.4 4.1C4.5 4.1 3.8 4.8 3.8 5.7s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6zM20 20h-2.6v-5.8c0-1.6-.6-2.6-2-2.6-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9V20H10.8s.1-9.4 0-10.4h2.6v1.7c.4-.6 1.2-1.9 3.1-1.9 2.2 0 3.5 1.4 3.5 4.5V20z"
-        />
-      </svg>
-    );
-  }
   return (
-    <svg viewBox="0 0 24 24" className="h-[1.25rem] w-[1.25rem]" aria-hidden>
+    <svg viewBox="0 0 24 24" className="h-[1.2rem] w-[1.2rem]" aria-hidden>
       <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        d="M4 7.5h16v10H4z"
-      />
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        d="m4.5 8 7.5 6 7.5-6"
+        fill="currentColor"
+        d="M6.7 9.2H4.1V20h2.6V9.2zM5.4 4.1C4.5 4.1 3.8 4.8 3.8 5.7s.7 1.6 1.6 1.6 1.6-.7 1.6-1.6-.7-1.6-1.6-1.6zM20 20h-2.6v-5.8c0-1.6-.6-2.6-2-2.6-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9V20H10.8s.1-9.4 0-10.4h2.6v1.7c.4-.6 1.2-1.9 3.1-1.9 2.2 0 3.5 1.4 3.5 4.5V20z"
       />
     </svg>
   );
 }
 
 const channels = [
-  { label: "Telegram", href: contact.telegram, external: true, icon: "telegram" },
-  { label: "MAX", href: contact.max, external: true, icon: "max" },
-  { label: "LinkedIn", href: contact.linkedin, external: true, icon: "linkedin" },
-  { label: "Email", href: `mailto:${contact.email}`, external: false, icon: "email" },
+  { label: "Telegram", href: contact.telegram, icon: "telegram" },
+  { label: "MAX", href: contact.max, icon: "max" },
+  { label: "LinkedIn", href: contact.linkedin, icon: "linkedin" },
 ] as const;
 
 export function Footer() {
@@ -79,7 +61,8 @@ export function Footer() {
             <li key={item.label}>
               <a
                 href={item.href}
-                {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex flex-col items-center gap-2 text-gold-400 transition-colors duration-300 hover:text-cream-50"
               >
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold-400">
@@ -89,6 +72,9 @@ export function Footer() {
               </a>
             </li>
           ))}
+          <li>
+            <CopyEmail />
+          </li>
         </ul>
       </div>
 
