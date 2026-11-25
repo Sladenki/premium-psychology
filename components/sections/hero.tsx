@@ -55,7 +55,7 @@ export function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-center overflow-x-clip bg-wine-950 px-5 pt-20 pb-10 text-cream-50 sm:px-8 lg:pt-24">
+    <section id="top" className="relative flex min-h-[100svh] items-start overflow-x-clip bg-wine-950 px-5 pt-[4.5rem] pb-8 text-cream-50 sm:px-8 sm:pt-20 lg:items-center lg:pt-24 lg:pb-10">
       <Curtain />
       <HeroField />
       <div className="relative z-10 mx-auto grid w-full max-w-[1120px] items-center gap-5 lg:grid-cols-[minmax(0,1fr)_18.75rem] lg:gap-16">
@@ -102,7 +102,7 @@ export function Hero() {
           </div>
         </motion.div>
         </div>
-        <figure className="relative order-1 aspect-square w-[8.5rem] justify-self-end overflow-hidden rounded-full sm:w-40 lg:order-2 lg:w-[18.75rem]">
+        <figure className="relative order-1 mr-3 aspect-square w-[9.35rem] justify-self-end overflow-hidden rounded-full sm:mr-5 sm:w-44 lg:order-2 lg:mr-0 lg:w-[18.75rem]">
           <Image
             src={heroPortrait}
             alt="Полина Олитто"

@@ -9,9 +9,9 @@ import { RevealLines } from "@/components/ui/reveal";
 
 function CaseDetail({ item }: { item: CaseStudy }) {
   return (
-    <article className="rounded-[1.25rem] border border-wine-700/10 bg-cream-50 px-4 py-3 sm:rounded-[1.35rem] sm:px-5 sm:py-4">
+    <article className="rounded-[1.25rem] border border-wine-700/10 bg-cream-50 px-4 py-2.5 sm:rounded-[1.35rem] sm:px-5 sm:py-3">
       <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">{item.name}</p>
-      <h3 className="mt-1 font-sans text-[1.12rem] leading-snug font-medium text-ink-900 sm:text-[1.28rem] lg:text-[1.4rem]">
+      <h3 className="mt-1.5 font-sans text-[1.16rem] leading-snug font-medium text-wine-800 sm:text-[1.28rem] lg:text-[1.38rem]">
         {item.title}
       </h3>
       <ol className="mt-2 list-none">
@@ -20,10 +20,10 @@ function CaseDetail({ item }: { item: CaseStudy }) {
           return (
             <li
               key={point.label}
-              className="grid gap-1 border-t border-wine-700/10 py-2 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:items-start sm:gap-4 sm:py-2"
+              className="grid gap-1 border-t border-wine-700/10 py-1.5 sm:grid-cols-[8.5rem_minmax(0,1fr)] sm:items-start sm:gap-4 sm:py-1.5"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">
+                <span aria-hidden className="font-serif text-[1.05rem] leading-none text-gold-400 lining-nums">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-wine-700">
@@ -104,14 +104,14 @@ export function Cases() {
   }, [activeId, reduce]);
 
   return (
-    <section id="cases" className="relative scroll-mt-24 overflow-x-clip bg-cream-50 py-6 sm:py-8 lg:py-8">
+    <section id="cases" className="relative scroll-mt-24 overflow-x-clip bg-cream-50 py-5 sm:py-6 lg:py-6">
       <Atmosphere variant="cases" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
         <RevealLines
           lines={cases.title}
           className="font-serif text-[2.15rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-5xl"
         />
-        <div className="mt-4 grid items-start gap-4 lg:mt-5 lg:grid-cols-[minmax(11rem,26%)_minmax(0,1fr)] lg:gap-6">
+        <div className="mt-4 grid items-start gap-3 lg:mt-4 lg:grid-cols-[minmax(11rem,26%)_minmax(0,1fr)] lg:gap-5">
           <div className="lg:sticky lg:top-24">
             <div
               role="tablist"
@@ -135,7 +135,7 @@ export function Cases() {
                       setActiveId(item.id);
                     }}
                     className={cn(
-                      "h-full rounded-2xl border px-3 py-2.5 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:px-3.5 lg:py-2.5",
+                      "flex h-full min-h-[4.85rem] flex-col justify-center rounded-2xl border px-3 py-2.5 text-left transition-colors duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] lg:px-3.5 lg:py-2",
                       last && "col-span-2 w-[calc(50%-0.25rem)] justify-self-center lg:col-span-1 lg:w-full",
                       selected
                         ? "border-wine-800 bg-wine-800 text-cream-50"

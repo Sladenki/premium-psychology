@@ -49,8 +49,9 @@ export function Footer() {
     <footer id="contacts" className="scroll-mt-24 bg-wine-800 text-cream-50">
       <div className="mx-auto grid w-full max-w-[1120px] items-center gap-8 px-5 py-10 sm:px-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-12">
         <div className="min-w-0">
-          <p className="font-serif text-[1.85rem] leading-[1.05] tracking-[-0.02em] sm:text-[2.2rem]">
-            {footer.brand}
+          <p className="font-serif text-[1.85rem] leading-[1.02] tracking-[-0.02em] sm:text-[2.2rem]">
+            Олитто
+            <span className="block">и партнёры</span>
           </p>
           <p className="mt-3 max-w-[28rem] text-[0.95rem] leading-snug text-cream-100/80">
             {footer.tagline}

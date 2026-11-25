@@ -160,7 +160,7 @@ export function ContactForm() {
               className="font-serif text-[2.05rem] leading-[1.08] tracking-[-0.03em] text-ink-900 sm:text-6xl"
             />
           </h2>
-          <p className="mt-8 max-w-md text-[1.05rem] leading-[1.7] text-ink-500">{contactForm.lede}</p>
+          <p className="mt-8 max-w-md whitespace-pre-line text-[1.05rem] leading-[1.7] text-ink-500">{contactForm.lede}</p>
         </div>
 
         {status === "success" ? (

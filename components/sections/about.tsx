@@ -134,7 +134,7 @@ export function AboutFounder() {
     <section id="about" className="relative scroll-mt-24 overflow-hidden bg-cream-50 py-8 sm:py-10 lg:py-12">
       <Atmosphere variant="founder" />
       <div className="relative z-10 mx-auto w-full max-w-[1120px] px-5 sm:px-8">
-        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,15.5rem)_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[minmax(0,17rem)_minmax(0,1fr)] xl:gap-16">
+        <div className="grid items-center gap-5 lg:grid-cols-[minmax(0,17.25rem)_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] xl:gap-14">
           <FadeIn className="order-2 mx-auto w-full max-w-[16rem] lg:order-1 lg:mx-0 lg:max-w-none" delay={0.08}>
             <Portrait
               src={portraitQuiet}
@@ -151,22 +151,22 @@ export function AboutFounder() {
               {about.yearsLabel}
             </p>
 
-            <div className="mt-4 h-px max-w-[8rem] bg-gold-400" aria-hidden />
+            <div className="mt-3 h-px max-w-[8rem] bg-gold-400" aria-hidden />
 
-            <h3 className="mt-4 font-serif text-[1.85rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-[2.15rem]">
+            <h3 className="mt-3 font-serif text-[1.85rem] leading-[1.05] tracking-[-0.02em] text-ink-900 sm:text-[2.15rem]">
               {about.founder.name}
             </h3>
             <p className="mt-2 max-w-[34rem] text-[0.98rem] leading-snug text-wine-700 sm:text-[1.02rem]">
               {about.founder.role}
             </p>
 
-            <div className="mt-4 max-w-[40rem] space-y-3 text-[0.98rem] leading-[1.55] text-ink-500 sm:text-[1.02rem]">
+            <div className="mt-3 max-w-[40rem] space-y-3 text-[0.98rem] leading-[1.55] text-ink-500 sm:text-[1.02rem]">
               {about.founder.bio.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
 
-            <p className="mt-4 max-w-[40rem] border-t border-wine-700/10 pt-3 text-[0.8125rem] leading-snug text-ink-500 sm:text-[0.875rem]">
+            <p className="mt-3 max-w-[40rem] border-t border-wine-700/10 pt-3 text-[0.8125rem] leading-snug text-ink-500 sm:text-[0.875rem]">
               <span className="font-semibold text-ink-900">{about.founder.experienceLabel}:</span>{" "}
               <span className="font-normal">{about.founder.companies.join(" · ")}</span>
             </p>
@@ -190,10 +190,10 @@ export function AboutPartners() {
           <p className="mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.75] text-ink-500 sm:text-[1.08rem]">
             {about.partnersBody}
           </p>
-          <p className="mx-auto mt-5 max-w-3xl text-[0.95rem] leading-snug text-gold-400 sm:text-[1.02rem]">
+          <p className="mx-auto mt-5 max-w-[34rem] text-[0.95rem] leading-snug text-ink-500 sm:max-w-none sm:text-[0.98rem] lg:whitespace-nowrap lg:text-[0.9rem] xl:text-[0.98rem]">
             {about.expertise.join(" · ")}
           </p>
-          <p className="mx-auto mt-6 max-w-xl font-sans text-[1.2rem] leading-snug font-medium text-wine-800 italic sm:text-[1.35rem]">
+          <p className="mx-auto mt-5 max-w-xl font-sans text-[1.15rem] leading-snug font-semibold text-ink-900 sm:text-[1.28rem]">
             {about.partnersClose}
           </p>
         </FadeIn>
