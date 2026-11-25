@@ -30,21 +30,25 @@ export function validateFeedback(body: unknown): FeedbackValidationResult {
   const name = asString(raw.name);
   const phone = asString(raw.phone);
   const details = asString(raw.details);
+  const phoneDigits = phone.replace(/\D/g, "");
 
   if (!name || name.length < 2) {
-    return { ok: false, error: "Укажите имя." };
+    return { ok: false, error: "Напишите, как к вам обращаться." };
   }
   if (name.length > 120) {
     return { ok: false, error: "Имя слишком длинное." };
   }
-  if (!phone || phone.length < 5) {
+  if (!/^[\p{L}\s'’.-]+$/u.test(name)) {
+    return { ok: false, error: "В имени только буквы, без цифр." };
+  }
+  if (!phone) {
     return { ok: false, error: "Укажите телефон." };
   }
-  if (phone.length > 40) {
-    return { ok: false, error: "Телефон слишком длинный." };
+  if (!/^[\d+()\-\s]+$/.test(phone) || phoneDigits.length < 10 || phoneDigits.length > 15) {
+    return { ok: false, error: "Укажите телефон цифрами, без букв." };
   }
   if (!details || details.length < 5) {
-    return { ok: false, error: "Напишите короткий комментарий." };
+    return { ok: false, error: "Напишите пару слов о ситуации." };
   }
   if (details.length > 4000) {
     return { ok: false, error: "Текст заявки слишком длинный." };
